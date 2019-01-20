@@ -1,0 +1,16 @@
+Envoyer Message
+	- page pour ecrire le message
+		- message (peut etre rich text box ?)
+		- place pour signer
+	- page pour lister tous les messages
+		- messages + pagination
+
+Choix
+	- rendre disponible seulement la semaine courante
+
+Resultats
+	- combinaison des resultats des matchs et des choix de tous les poolers
+	- Check pour la performance (!!!)
+
+Database:
+	- a voir le design des tables
