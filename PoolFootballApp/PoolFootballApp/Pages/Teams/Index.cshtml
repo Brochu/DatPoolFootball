@@ -1,0 +1,58 @@
+﻿@page
+@model PoolFootballApp.Pages.Teams.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Logo</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Team[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Team[0].City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Team[0].Conf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Team[0].Div)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Team) {
+        <tr>
+            <td>
+                <img src="@String.Format("https://static.nfl.com/static/content/public/static/wildcat/assets/img/logos/teams/{0}.svg", item.ShortName)" height="30" width="30"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Div)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
