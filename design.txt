@@ -14,3 +14,10 @@ Resultats
 
 Database:
 	- a voir le design des tables
+
+Pour rouler le projet:
+	Update VS
+	Install .net core 2.2 (avoir access aux razor pages)
+	Avoir NuGet
+	Initial migration pour la DB (NFLContext)
+	Update DB migration (NFLContext)
