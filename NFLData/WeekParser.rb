@@ -20,6 +20,6 @@ else
         homeScore = game.attribute("hs");
         away = game.attribute("v");
         awayScore = game.attribute("vs");
-        puts "new Match { Season = #{season}, Week = #{week}, HomeTeamId = #{home}, HomeScore = #{homeScore}, AwayTeamId = #{away}, AwayScore = #{awayScore} },";
+        puts "new Match { Season = #{season}, Week = #{week}, HomeTeamId = \"#{home}\", HomeScore = #{homeScore}, AwayTeamId = \"#{away}\", AwayScore = #{awayScore} },";
     end
 end
