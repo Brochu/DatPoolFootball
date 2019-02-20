@@ -16,10 +16,10 @@ else
     result = Net::HTTP.get(uri);
     xmlDoc = Document.new(result);
     xmlDoc.get_elements("//g").each do |game|
-        home = game.attribute("hnn");
+        home = game.attribute("h");
         homeScore = game.attribute("hs");
-        away = game.attribute("vnn");
+        away = game.attribute("v");
         awayScore = game.attribute("vs");
-        puts "home : #{home} (#{homeScore}) visitor : #{away} (#{awayScore})";
+        puts "new Match { Season = #{season}, Week = #{week}, HomeTeamId = #{home}, HomeScore = #{homeScore}, AwayTeamId = #{away}, AwayScore = #{awayScore} },";
     end
 end
