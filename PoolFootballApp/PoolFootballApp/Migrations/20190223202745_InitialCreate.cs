@@ -8,6 +8,21 @@ namespace PoolFootballApp.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Messages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Title = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true),
+                    Signature = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Messages", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Teams",
                 columns: table => new
                 {
@@ -43,13 +58,13 @@ namespace PoolFootballApp.Migrations
                         column: x => x.AwayTeamId,
                         principalTable: "Teams",
                         principalColumn: "ShortName",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Matches_Teams_HomeTeamId",
                         column: x => x.HomeTeamId,
                         principalTable: "Teams",
                         principalColumn: "ShortName",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -58,6 +73,7 @@ namespace PoolFootballApp.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<string>(nullable: true),
                     MatchId = table.Column<int>(nullable: false),
                     Choice = table.Column<int>(nullable: false)
                 },
@@ -90,6 +106,9 @@ namespace PoolFootballApp.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Messages");
+
             migrationBuilder.DropTable(
                 name: "Picks");
 

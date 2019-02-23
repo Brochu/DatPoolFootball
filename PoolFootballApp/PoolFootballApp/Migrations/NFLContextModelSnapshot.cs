@@ -45,6 +45,23 @@ namespace PoolFootballApp.Migrations
                     b.ToTable("Matches");
                 });
 
+            modelBuilder.Entity("PoolFootballApp.Models.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content");
+
+                    b.Property<string>("Signature");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Messages");
+                });
+
             modelBuilder.Entity("PoolFootballApp.Models.Pick", b =>
                 {
                     b.Property<int>("Id")
@@ -54,6 +71,8 @@ namespace PoolFootballApp.Migrations
                     b.Property<int>("Choice");
 
                     b.Property<int>("MatchId");
+
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 

@@ -10,6 +10,7 @@ namespace PoolFootballApp.Models
 	public class Pick
 	{
 		public int Id { get; set; }
+		public string UserId { get; set; }
 		public int MatchId { get; set; }
 		public MatchPick Choice { get; set; }
 
