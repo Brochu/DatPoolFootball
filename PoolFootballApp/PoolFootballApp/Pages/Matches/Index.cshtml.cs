@@ -43,8 +43,7 @@ namespace PoolFootballApp.Pages.Matches
 				ViewData["Subtitle"] = string.Format("Matches from the Season {0}, Week {1}", Season, Week);
 
 				Matches = await _context.Matches
-					.Where(m => m.Season == Season)
-					.Where(m => m.Week == Week)
+					.Where(m => m.Season == Season && m.Week == Week)
 
 					.Include(m => m.AwayTeam)
 					.Include(m => m.HomeTeam)
