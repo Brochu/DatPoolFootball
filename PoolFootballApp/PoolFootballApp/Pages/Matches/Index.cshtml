@@ -5,8 +5,8 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-<h2>@ViewData["Season"]</h2>
+<h1>Match List</h1>
+<h2>@ViewData["Subtitle"]</h2>
 
 @if (Model.Matches != null)
 {
@@ -21,30 +21,21 @@
             </tr>
         </thead>
         <tbody>
-    @foreach (var item in Model.Matches) {
-        @foreach (var game in item.Value)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => game.HomeTeamId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => game.HomeScore)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => game.AwayScore)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => game.AwayTeamId)
-                </td>
-            </tr>
-        }
-            <tr>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-            </tr>
+    @foreach (var match in Model.Matches) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => match.HomeTeamId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => match.HomeScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => match.AwayScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => match.AwayTeamId)
+            </td>
+        </tr>
     }
         </tbody>
     </table>

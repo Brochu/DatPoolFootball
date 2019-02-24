@@ -18,9 +18,13 @@ namespace PoolFootballApp.Pages.Matches
 			_context = context;
 		}
 
+		// TODO: Create custom routing to change route to *url*/Matches/*season*/*week*
 		[BindProperty(SupportsGet = true)]
 		public int Season { get; set; }
-		public Dictionary<int, List<Match>> Matches { get;set; }
+		[BindProperty(SupportsGet = true)]
+		public int Week { get; set; }
+
+		public IList<Match> Matches { get; set; }
 
 		public async Task OnGetAsync()
 		{
@@ -29,28 +33,23 @@ namespace PoolFootballApp.Pages.Matches
 				// So season given, list all season in DB to choose
 				// return multiple selection list to user
 			}
+			else if (Week == 0)
+			{
+				// So week given, list all week for the given season in DB to choose
+				// return multiple selection list to user
+			}
 			else
 			{
-				ViewData["Season"] = string.Format("{0} Season :", Season);
+				ViewData["Subtitle"] = string.Format("Matches from the Season {0}, Week {1}", Season, Week);
 
-				Matches = new Dictionary<int, List<Match>>();
-				await _context.Matches
+				Matches = await _context.Matches
 					.Where(m => m.Season == Season)
+					.Where(m => m.Week == Week)
 
 					.Include(m => m.AwayTeam)
 					.Include(m => m.HomeTeam)
 
-					.OrderBy(m => m.Season)
-					.ThenBy(m => m.Week)
-
-					.ForEachAsync((m) =>
-					{
-						if (!Matches.ContainsKey(m.Week))
-						{
-							Matches.Add(m.Week, new List<Match>());
-						}
-						Matches[m.Week].Add(m);
-					});
+					.ToListAsync();
 			}
 		}
 	}
