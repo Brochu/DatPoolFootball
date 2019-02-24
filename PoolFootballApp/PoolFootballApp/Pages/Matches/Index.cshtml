@@ -6,45 +6,46 @@
 }
 
 <h1>Index</h1>
+<h2>@ViewData["Season"]</h2>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>HOME TEAM</th>
-            <th>HOME SCORE</th>
-            <th>AWAY SCORE</th>
-            <th>AWAY TEAM</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Matches) {
-    @foreach (var game in item.Value)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => game.HomeTeamId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => game.HomeScore)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => game.AwayScore)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => game.AwayTeamId)
-            </td>
-        </tr>
+@if (Model.Matches != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>HOME TEAM</th>
+                <th>HOME SCORE</th>
+                <th>AWAY SCORE</th>
+                <th>AWAY TEAM</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model.Matches) {
+        @foreach (var game in item.Value)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => game.HomeTeamId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => game.HomeScore)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => game.AwayScore)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => game.AwayTeamId)
+                </td>
+            </tr>
+        }
+            <tr>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+            </tr>
     }
-        <tr>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
-        </tr>
+        </tbody>
+    </table>
 }
-    </tbody>
-</table>
