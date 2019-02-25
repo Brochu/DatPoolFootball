@@ -24,21 +24,24 @@ namespace PoolFootballApp.Pages.Matches
 		[BindProperty(SupportsGet = true)]
 		public int Week { get; set; }
 
+		public IList<int> Seasons { get; set; }
+		public IList<int> Weeks { get; set; }
 		public IList<Match> Matches { get; set; }
 
 		public async Task OnGetAsync()
 		{
-			if (Season == 0)
-			{
-				// So season given, list all season in DB to choose
-				// return multiple selection list to user
-			}
-			else if (Week == 0)
-			{
-				// So week given, list all week for the given season in DB to choose
-				// return multiple selection list to user
-			}
-			else
+			Seasons = await _context.Matches
+				.Select(m => m.Season)
+				.Distinct()
+				.ToListAsync();
+
+			Weeks = await _context.Matches
+				.Where(m => m.Season == Season)
+				.Select(m => m.Week)
+				.Distinct()
+				.ToListAsync();
+
+			if (Season != 0 && Week != 0)
 			{
 				ViewData["Subtitle"] = string.Format("Matches from the Season {0}, Week {1}", Season, Week);
 
