@@ -14,5 +14,6 @@ namespace PoolFootballApp.Models
 		public DbSet<Match> Matches { get; set; }
 		public DbSet<Pick> Picks { get; set; }
 		public DbSet<Message> Messages { get; set; }
+		public DbSet<Pool> Pools { get; set; }
 	}
 }

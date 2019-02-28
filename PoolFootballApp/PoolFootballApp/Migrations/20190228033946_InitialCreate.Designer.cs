@@ -9,7 +9,7 @@ using PoolFootballApp.Models;
 namespace PoolFootballApp.Migrations
 {
     [DbContext(typeof(NFLContext))]
-    [Migration("20190223202745_InitialCreate")]
+    [Migration("20190228033946_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,6 +81,21 @@ namespace PoolFootballApp.Migrations
                     b.HasIndex("MatchId");
 
                     b.ToTable("Picks");
+                });
+
+            modelBuilder.Entity("PoolFootballApp.Models.Pool", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("PoolName");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pools");
                 });
 
             modelBuilder.Entity("PoolFootballApp.Models.Team", b =>

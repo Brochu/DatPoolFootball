@@ -81,6 +81,21 @@ namespace PoolFootballApp.Migrations
                     b.ToTable("Picks");
                 });
 
+            modelBuilder.Entity("PoolFootballApp.Models.Pool", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("PoolName");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Pools");
+                });
+
             modelBuilder.Entity("PoolFootballApp.Models.Team", b =>
                 {
                     b.Property<string>("ShortName");

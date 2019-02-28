@@ -23,6 +23,20 @@ namespace PoolFootballApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Pools",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<string>(nullable: true),
+                    PoolName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pools", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Teams",
                 columns: table => new
                 {
@@ -58,13 +72,13 @@ namespace PoolFootballApp.Migrations
                         column: x => x.AwayTeamId,
                         principalTable: "Teams",
                         principalColumn: "ShortName",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Matches_Teams_HomeTeamId",
                         column: x => x.HomeTeamId,
                         principalTable: "Teams",
                         principalColumn: "ShortName",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -111,6 +125,9 @@ namespace PoolFootballApp.Migrations
 
             migrationBuilder.DropTable(
                 name: "Picks");
+
+            migrationBuilder.DropTable(
+                name: "Pools");
 
             migrationBuilder.DropTable(
                 name: "Matches");
