@@ -21,10 +21,25 @@ namespace PoolFootballApp.Pages.Picks
 			_config = config;
 		}
 
+		[BindProperty(SupportsGet = true)]
+		public int Season { get; set; }
+		[BindProperty(SupportsGet = true)]
+		public int Week { get; set; }
+
 		public IList<Pick> Pick { get;set; }
 
 		public async Task OnGetAsync()
 		{
+			if (Season == 0)
+			{
+				Season = int.Parse(_config["Values:CurrentSeason"]);
+			}
+			if (Week == 0)
+			{
+				TimeSpan span = (DateTime.Today - DateTime.Parse(_config["Values:StartDate"]));
+				Week = ((int)(span.TotalDays / 7)) + 1;
+			}
+
 			Pick = await _context.Picks
 				.Include(p => p.Match).ToListAsync();
 		}

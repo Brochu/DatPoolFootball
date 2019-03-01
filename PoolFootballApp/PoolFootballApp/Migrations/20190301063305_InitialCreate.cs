@@ -29,6 +29,7 @@ namespace PoolFootballApp.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     UserId = table.Column<string>(nullable: true),
+                    UserName = table.Column<string>(nullable: true),
                     PoolName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

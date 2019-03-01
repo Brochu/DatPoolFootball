@@ -91,6 +91,8 @@ namespace PoolFootballApp.Migrations
 
                     b.Property<string>("UserId");
 
+                    b.Property<string>("UserName");
+
                     b.HasKey("Id");
 
                     b.ToTable("Pools");
