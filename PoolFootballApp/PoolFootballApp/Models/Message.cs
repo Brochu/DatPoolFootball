@@ -11,5 +11,6 @@ namespace PoolFootballApp.Models
 		public string Title { get; set; }
 		public string Content { get; set; }
 		public string Signature { get; set; }
+		public DateTime PostTime { get; set; }
 	}
 }
