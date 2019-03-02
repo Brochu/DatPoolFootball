@@ -15,18 +15,19 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Pick.Id" />
             <div class="form-group">
-                <label asp-for="Pick.UserId" class="control-label"></label>
-                <input asp-for="Pick.UserId" class="form-control" />
-                <span asp-validation-for="Pick.UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Pick.MatchId" class="control-label"></label>
                 <select asp-for="Pick.MatchId" class="form-control" asp-items="ViewBag.MatchId"></select>
                 <span asp-validation-for="Pick.MatchId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Pick.Choice" class="control-label"></label>
-                <select asp-for="Pick.Choice" class="form-control"></select>
+                <label asp-for="Pick.Choice" class="control-label">@Models.MatchPick.Away.ToString()</label>
+                @Html.RadioButtonFor(m => m.Pick.Choice, Models.MatchPick.Away);
+
+                <br />
+
+                <label asp-for="Pick.Choice" class="control-label">@Models.MatchPick.Home.ToString()</label>
+                @Html.RadioButtonFor(m => m.Pick.Choice, Models.MatchPick.Home);
+
                 <span asp-validation-for="Pick.Choice" class="text-danger"></span>
             </div>
             <div class="form-group">

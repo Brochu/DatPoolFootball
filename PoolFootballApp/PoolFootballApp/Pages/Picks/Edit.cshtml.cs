@@ -6,28 +6,35 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using PoolFootballApp.Models;
 
 namespace PoolFootballApp.Pages.Picks
 {
     public class EditModel : PageModel
     {
-        private readonly PoolFootballApp.Models.NFLContext _context;
+        private readonly NFLContext _context;
+		private readonly IConfiguration _config;
 
-        public EditModel(PoolFootballApp.Models.NFLContext context)
+        public EditModel(NFLContext context, IConfiguration config)
         {
             _context = context;
+			_config = config;
         }
 
         [BindProperty]
         public Pick Pick { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+			int season = _config.GetValue<int>("Values:CurrentSeason");
+			// TEMP VALUE FOR TESTING
+			int week = 1;
+
+			int[] matchIds = await _context.Matches
+				.Where(m => m.Season == season && m.Week == week)
+				.Select(m => m.Id)
+				.ToArrayAsync();
 
             Pick = await _context.Picks
                 .Include(p => p.Match).FirstOrDefaultAsync(m => m.Id == id);
