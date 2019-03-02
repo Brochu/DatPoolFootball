@@ -5,6 +5,20 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Picks List</h1>
+<h2>@string.Format("Season {0}, Week {1}", Model.Season, Model.Week)</h2>
 
-<p>@ViewData["test"]</p>
+<table>
+@foreach (var m in Model.Matches)
+{
+    <tr>
+        <td><img src="~/img/@string.Format("{0}.svg", m.AwayTeam.ShortName)" width="40" height="40" /></td>
+        <td>@string.Format("{0} {1}", m.AwayTeam.City, m.AwayTeam.Name)</td>
+        <td>&nbsp;&nbsp;&nbsp; @m.AwayScore &nbsp;&nbsp;&nbsp;</td>
+        <td>&nbsp;&nbsp;&nbsp; @m.HomeScore &nbsp;&nbsp;&nbsp;</td>
+        <td>@string.Format("{0} {1}", m.HomeTeam.City, m.HomeTeam.Name)</td>
+        <td><img src="~/img/@string.Format("{0}.svg", m.HomeTeam.ShortName)" width="40" height="40" /></td>
+        <td>@m.WeekDay.ToString(). @m.StartTime.ToString("h:mm")</td>
+    </tr>
+}
+</table>

@@ -20,6 +20,10 @@ else
         homeScore = game.attribute("hs");
         away = game.attribute("v");
         awayScore = game.attribute("vs");
-        puts "new Match { Season = #{season}, Week = #{week}, HomeTeamId = \"#{home}\", HomeScore = #{homeScore}, AwayTeamId = \"#{away}\", AwayScore = #{awayScore} },";
+
+        weekDay = game.attribute("d");
+        startTime = game.attribute("t");
+
+        puts "new Match { Season = #{season}, Week = #{week}, HomeTeamId = \"#{home}\", HomeScore = #{homeScore}, AwayTeamId = \"#{away}\", AwayScore = #{awayScore}, WeekDay = Day.#{weekDay}, StartTime = DateTime.Parse(\"#{startTime}\") },";
     end
 end

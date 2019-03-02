@@ -29,8 +29,8 @@ namespace PoolFootballApp.Pages.Picks
 		[BindProperty(SupportsGet = true)]
 		public int Week { get; set; }
 
-		public Dictionary<string, string> UsersLookup { get; set; }
 		public IList<Match> Matches { get; set; }
+		public Dictionary<string, string> UsersLookup { get; set; }
 		public Dictionary<int, IList<Pick>> PicksLookup { get; set; }
 
 		public async Task OnGetAsync()
@@ -49,6 +49,17 @@ namespace PoolFootballApp.Pages.Picks
 				Week = 1;
 			}
 
+			// Get matches for given week/season
+			Matches = await _context.Matches
+				.Where(m => m.Season == Season && m.Week == Week)
+				.OrderBy(m => m.WeekDay)
+				.ThenBy(m => m.StartTime)
+
+				.Include(m => m.AwayTeam)
+				.Include(m => m.HomeTeam)
+				.ToListAsync();
+			HashSet<int> matchIds = new HashSet<int>(Matches.Select(m => m.Id));
+
 			// Get user related data
 			Pool current = _context.Pools
 				.Where(p => p.UserId == _userManager.GetUserId(User))
@@ -65,16 +76,6 @@ namespace PoolFootballApp.Pages.Picks
 					.Where(p => p.PoolName.Equals(current.PoolName))
 					.ForEachAsync(p => { UsersLookup[p.UserId] = p.UserName; });
 			}
-
-			// Get matches for given week/season
-			Matches = await _context.Matches
-				.Where(m => m.Season == Season && m.Week == Week)
-
-				.Include(m => m.AwayTeam)
-				.Include(m => m.HomeTeam)
-
-				.ToListAsync();
-			HashSet<int> matchIds = new HashSet<int>(Matches.Select(m => m.Id));
 
 			// Get all related picks for matches
 			PicksLookup = new Dictionary<int, IList<Pick>>();

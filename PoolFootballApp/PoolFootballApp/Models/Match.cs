@@ -7,11 +7,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PoolFootballApp.Models
 {
+	/// <summary>
+	/// To order matches in the correct order
+	/// </summary>
+	public enum Day { Tue, Wed, Thu, Fri, Sat, Sun, Mon }
+
 	public class Match
 	{
 		public int Id { get; set; }
 		public int Season { get; set; }
 		public int Week { get; set; }
+		public Day WeekDay { get; set; }
+		public DateTime StartTime { get; set; }
 
 		public string HomeTeamId { get; set; }
 		public string AwayTeamId { get; set; }

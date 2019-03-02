@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PoolFootballApp.Migrations
@@ -15,7 +16,8 @@ namespace PoolFootballApp.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
-                    Signature = table.Column<string>(nullable: true)
+                    Signature = table.Column<string>(nullable: true),
+                    PostTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,6 +62,8 @@ namespace PoolFootballApp.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Season = table.Column<int>(nullable: false),
                     Week = table.Column<int>(nullable: false),
+                    WeekDay = table.Column<int>(nullable: false),
+                    StartTime = table.Column<DateTime>(nullable: false),
                     HomeTeamId = table.Column<string>(nullable: true),
                     AwayTeamId = table.Column<string>(nullable: true),
                     HomeScore = table.Column<int>(nullable: false),
