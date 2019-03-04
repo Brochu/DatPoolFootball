@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PoolFootballApp.Models
 {
-	public enum MatchPick { Home, Away }
+	public enum MatchPick { None, Away, Home }
 
 	public class Pick
 	{

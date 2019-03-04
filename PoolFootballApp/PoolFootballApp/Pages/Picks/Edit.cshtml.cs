@@ -25,18 +25,21 @@ namespace PoolFootballApp.Pages.Picks
 			_userManager = userManager;
 		}
 
+		public List<int> MatchIds;
 		[BindProperty]
-		public Pick Pick { get; set; }
+		public List<Pick> Picks { get; set; }
 
 		public async Task<IActionResult> OnGetAsync()
 		{
 			int season = _config.GetValue<int>("Values:CurrentSeason");
+			//TimeSpan span = (DateTime.Today - DateTime.Parse(_config["Values:StartDate"]));
+			//int week = ((int)(span.TotalDays / 7)) + 1;
 			// TEMP VALUE FOR TESTING
 			int week = 1;
 			string userId = _userManager.GetUserId(User);
 
 			bool addedAny = false;
-			List<int> matchIds = new List<int>();
+			MatchIds = new List<int>();
 			await _context.Matches
 				.Where(m => m.Season == season && m.Week == week)
 				.OrderBy(m => m.WeekDay)
@@ -44,7 +47,7 @@ namespace PoolFootballApp.Pages.Picks
 				.Select(m => m.Id)
 				.ForEachAsync(id =>
 				{
-					matchIds.Add(id);
+					MatchIds.Add(id);
 					if (!_context.Picks.Any(p => p.MatchId == id && p.UserId.Equals(userId)))
 					{
 						_context.Picks.Add(new Pick() { MatchId = id, UserId = userId });
@@ -57,11 +60,16 @@ namespace PoolFootballApp.Pages.Picks
 				_context.SaveChanges();
 			}
 
-			// SELECT ALL THE PICKS FOR THE GIVEN WEEK
-			//Pick = await _context.Picks
-			//	.Include(p => p.Match).FirstOrDefaultAsync(m => m.Id == id);
+			Picks = await _context.Picks
+				.Where(p => MatchIds.Contains(p.MatchId) && p.UserId.Equals(userId))
 
-		   ViewData["MatchId"] = new SelectList(_context.Matches, "Id", "Id");
+				.Include(p => p.Match)
+				.ThenInclude(m => m.AwayTeam)
+				.Include(p => p.Match)
+				.ThenInclude(m => m.HomeTeam)
+
+				.ToListAsync();
+
 			return Page();
 		}
 
@@ -72,30 +80,21 @@ namespace PoolFootballApp.Pages.Picks
 				return Page();
 			}
 
-			_context.Attach(Pick).State = EntityState.Modified;
+			foreach (Pick pick in Picks)
+			{
+				_context.Attach(pick).State = EntityState.Modified;
+			}
 
 			try
 			{
 				await _context.SaveChangesAsync();
 			}
-			catch (DbUpdateConcurrencyException)
+			catch (DbUpdateConcurrencyException e)
 			{
-				if (!PickExists(Pick.Id))
-				{
-					return NotFound();
-				}
-				else
-				{
-					throw;
-				}
+				Console.WriteLine("ERROR : " + e.Message);
 			}
 
 			return RedirectToPage("./Index");
-		}
-
-		private bool PickExists(int id)
-		{
-			return _context.Picks.Any(e => e.Id == id);
 		}
 	}
 }
