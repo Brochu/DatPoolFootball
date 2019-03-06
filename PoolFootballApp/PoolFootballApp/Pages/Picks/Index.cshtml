@@ -8,17 +8,23 @@
 <h1>Picks List</h1>
 <h2>@string.Format("Season {0}, Week {1}", Model.Season, Model.Week)</h2>
 
-<table>
+<table class="col-8 offset-2">
 @foreach (var m in Model.Matches)
 {
     <tr>
-        <td><img src="~/img/@string.Format("{0}.svg", m.AwayTeam.ShortName)" width="40" height="40" /></td>
-        <td>@string.Format("{0} {1}", m.AwayTeam.City, m.AwayTeam.Name)</td>
-        <td>@m.AwayScore</td>
-        <td>@m.HomeScore</td>
-        <td>@string.Format("{0} {1}", m.HomeTeam.City, m.HomeTeam.Name)</td>
-        <td><img src="~/img/@string.Format("{0}.svg", m.HomeTeam.ShortName)" width="40" height="40" /></td>
-        <td>@m.WeekDay.ToString(). @m.StartTime.ToString("h:mm")</td>
+        <td class="away-team">
+            <span class="@(m.AwayScore > m.HomeScore ? "winner" : "")">@string.Format("{0} {1}", m.AwayTeam.City, m.AwayTeam.Name)</span>
+            <span class="team-logo"><img src="~/img/@string.Format("{0}.svg", m.AwayTeam.ShortName)" width="40" height="40" /></span>
+            <span class="score-cell @(m.AwayScore > m.HomeScore ? "winner" : "")">@m.AwayScore</span>
+        </td>
+
+        <td class="home-team">
+            <span class="score-cell @(m.HomeScore > m.AwayScore ? "winner" : "")">@m.HomeScore</span>
+            <span class="team-logo"><img src="~/img/@string.Format("{0}.svg", m.HomeTeam.ShortName)" width="40" height="40" /></span>
+            <span class="@(m.HomeScore > m.AwayScore ? "winner" : "")">@string.Format("{0} {1}", m.HomeTeam.City, m.HomeTeam.Name)</span>
+        </td>
+
+        <td class="start-time-cell">@m.WeekDay.ToString(). @m.StartTime.ToString("h:mm")</td>
     </tr>
 }
 </table>

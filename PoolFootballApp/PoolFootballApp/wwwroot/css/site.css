@@ -1,7 +1,7 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
+.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
@@ -29,7 +29,7 @@ html {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
-button.accept-policy {
+.accept-policy {
   font-size: 1rem;
   line-height: inherit;
 }
@@ -55,7 +55,35 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-td {
+/* Custom c style and classes */
+.score-cell
+{
     text-align: center;
+    padding: 0 5px 0 5px;
+}
+
+.start-time-cell
+{
+    text-align: left;
+    padding: 0 0 0 10px;
+}
+
+.away-team
+{
+    text-align: right;
+}
+
+.home-team
+{
+    text-align: left;
+}
+
+.winner
+{
+    font-weight: bold;
+}
+
+.team-logo
+{
     padding: 0 5px 0 5px;
 }
