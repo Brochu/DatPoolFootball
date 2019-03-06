@@ -31,7 +31,7 @@ namespace PoolFootballApp.Pages.Picks
 
 		public IList<Match> Matches { get; set; }
 		public Dictionary<string, string> UsersLookup { get; set; }
-		public Dictionary<int, IList<Pick>> PicksLookup { get; set; }
+		public Dictionary<int, List<Pick>> PicksLookup { get; set; }
 
 		public async Task OnGetAsync()
 		{
@@ -49,23 +49,12 @@ namespace PoolFootballApp.Pages.Picks
 				Week = 1;
 			}
 
-			// Get matches for given week/season
-			Matches = await _context.Matches
-				.Where(m => m.Season == Season && m.Week == Week)
-				.OrderBy(m => m.WeekDay)
-				.ThenBy(m => m.StartTime)
-
-				.Include(m => m.AwayTeam)
-				.Include(m => m.HomeTeam)
-				.ToListAsync();
-			HashSet<int> matchIds = new HashSet<int>(Matches.Select(m => m.Id));
-
-			// Get user related data
+			// Get current user's pool
 			Pool current = _context.Pools
 				.Where(p => p.UserId == _userManager.GetUserId(User))
 				.FirstOrDefault();
-			UsersLookup = new Dictionary<string, string>();
 
+			UsersLookup = new Dictionary<string, string>();
 			if (current == null)
 			{
 				UsersLookup.Add(_userManager.GetUserId(User), _userManager.GetUserName(User));
@@ -74,21 +63,26 @@ namespace PoolFootballApp.Pages.Picks
 			{
 				await _context.Pools
 					.Where(p => p.PoolName.Equals(current.PoolName))
-					.ForEachAsync(p => { UsersLookup[p.UserId] = p.UserName; });
+					.ForEachAsync(p => UsersLookup.Add(p.UserId, p.UserName) );
 			}
 
-			// Get all related picks for matches
-			PicksLookup = new Dictionary<int, IList<Pick>>();
-			await _context.Picks
-				.Where(p => matchIds.Contains(p.MatchId))
-				.ForEachAsync(p =>
+			// Get matches for given week/season
+			Matches = new List<Match>();
+			PicksLookup = new Dictionary<int, List<Pick>>();
+			await _context.Matches
+				.Where(m => m.Season == Season && m.Week == Week)
+				.OrderBy(m => m.WeekDay)
+				.ThenBy(m => m.StartTime)
+
+				.Include(m => m.AwayTeam)
+				.Include(m => m.HomeTeam)
+				.ForEachAsync(m =>
 				{
-					if (!PicksLookup.ContainsKey(p.MatchId))
-					{
-						PicksLookup.Add(p.MatchId, new List<Pick>());
-					}
-					PicksLookup[p.MatchId].Add(p);
+					Matches.Add(m);
+					PicksLookup.Add(m.Id, _context.Picks.Where(p => p.MatchId == m.Id).ToList());
 				});
+
+			Console.WriteLine("TEST");
 		}
 	}
 }
