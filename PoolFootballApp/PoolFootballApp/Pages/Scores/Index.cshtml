@@ -7,3 +7,26 @@
 
 <h1>Index</h1>
 <h2>SCORES FOR SEASON {0}</h2>
+
+<hr />
+
+<table class="table col-9">
+    <tr>
+        <th>WEEK \ USERS</th>
+        @foreach (var user in Model.UsersLookup)
+        {
+            <th>@user.Value</th>
+        }
+    </tr>
+    
+    @foreach (var entry in Model.UserScores)
+    {
+        <tr>
+            <th>@string.Format("Week {0}", entry.Key)</th>
+            @foreach (var result in entry.Value)
+            {
+                <td>@string.Format("{0} out of {1}", result.Score, Model.PossibleScores[entry.Key])</td>
+            }
+        </tr>
+    }
+</table>
