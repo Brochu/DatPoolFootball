@@ -18,6 +18,8 @@
             <span class="score-cell @(m.AwayScore > m.HomeScore ? "winner" : "")">@m.AwayScore</span>
         </td>
 
+        <td> -- </td>
+
         <td class="home-team">
             <span class="score-cell @(m.HomeScore > m.AwayScore ? "winner" : "")">@m.HomeScore</span>
             <span class="team-logo"><img src="~/img/@string.Format("{0}.svg", m.HomeTeam.ShortName)" width="40" height="40" /></span>
@@ -26,9 +28,11 @@
 
         <td class="start-time-cell">@m.WeekDay.ToString(). @m.StartTime.ToString("h:mm")</td>
     </tr>
+
     <tr>
-        <td>ASDF</td>
-        <td>ASDF</td>
+        <td></td>
+        <td> -- </td>
+        <td></td>
     </tr>
 }
 </table>

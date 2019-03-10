@@ -25,12 +25,15 @@ namespace PoolFootballApp.Pages.Picks
 			_userManager = userManager;
 		}
 
+		public bool AnyMatchStarted { get; private set; }
 		public List<int> MatchIds;
 		[BindProperty]
 		public List<Pick> Picks { get; set; }
 
 		public async Task<IActionResult> OnGetAsync()
 		{
+			CheckMatchStarted();
+
 			int season = _config.GetValue<int>("Values:CurrentSeason");
 			//TimeSpan span = (DateTime.Today - DateTime.Parse(_config["Values:StartDate"]));
 			//int week = ((int)(span.TotalDays / 7)) + 1;
@@ -95,6 +98,12 @@ namespace PoolFootballApp.Pages.Picks
 			}
 
 			return RedirectToPage("./Index");
+		}
+
+		private void CheckMatchStarted()
+		{
+			// Need to add logic to check if any match started
+			AnyMatchStarted = false;
 		}
 	}
 }

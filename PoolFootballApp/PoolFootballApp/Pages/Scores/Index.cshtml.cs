@@ -17,11 +17,6 @@ namespace PoolFootballApp.Pages.Scores
 		{
 			public string UserId;
 			public int Score;
-
-			public void CountWin()
-			{
-				Score++;
-			}
 		}
 
 		private readonly NFLContext _context;
@@ -57,7 +52,9 @@ namespace PoolFootballApp.Pages.Scores
 			UsersLookup = new Dictionary<string, string>();
 			if (pool != null)
 			{
-				// Fetch all players in the pool
+				await _context.Pools
+					.Where(p => p.PoolName.Equals(pool.PoolName))
+					.ForEachAsync(p => { UsersLookup.Add(p.UserId, p.UserName); });
 			}
 			else
 			{
@@ -83,7 +80,7 @@ namespace PoolFootballApp.Pages.Scores
 						if (pick.Choice == MatchPick.Away && pick.Match.AwayScore > pick.Match.HomeScore ||
 							pick.Choice == MatchPick.Home && pick.Match.HomeScore > pick.Match.AwayScore)
 						{
-							UserScores[g.Key].Find(s => s.UserId.Equals(pick.UserId)).CountWin();
+							UserScores[g.Key].Find(s => s.UserId.Equals(pick.UserId)).Score++;
 						}
 					}
 				});

@@ -9,41 +9,48 @@
 
 <h4>Pick</h4>
 <hr />
-<div class="row">
-    <form method="post">
-        <table class="table">
-        @for (int i = 0; i < Model.Picks.Count; ++i)
-        {
-            <tr>
-                <td>
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="Picks[i].Id" />
-                <input type="hidden" asp-for="Picks[i].MatchId" />
-                <input type="hidden" asp-for="Picks[i].UserId" />
-                </td>
+@if (!Model.AnyMatchStarted)
+{
+    <div class="row">
+        <form method="post">
+            <table class="table">
+            @for (int i = 0; i < Model.Picks.Count; ++i)
+            {
+                <tr>
+                    <td>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Picks[i].Id" />
+                    <input type="hidden" asp-for="Picks[i].MatchId" />
+                    <input type="hidden" asp-for="Picks[i].UserId" />
+                    </td>
 
-                <td><img src="~/img/@string.Format("{0}.svg", Model.Picks[i].Match.AwayTeam.ShortName)" height="40" width="40" /></td>
-                <td>@string.Format("{0} {1}", Model.Picks[i].Match.AwayTeam.City, Model.Picks[i].Match.AwayTeam.Name)</td>
-                <td>@Html.RadioButtonFor(m => m.Picks[i].Choice, Models.MatchPick.Away)</td>
-                <td>@Html.RadioButtonFor(m => m.Picks[i].Choice, Models.MatchPick.Home)</td>
-                <td>@string.Format("{0} {1}", Model.Picks[i].Match.HomeTeam.City, Model.Picks[i].Match.HomeTeam.Name)</td>
-                <td><img src="~/img/@string.Format("{0}.svg", Model.Picks[i].Match.HomeTeam.ShortName)" height="40" width="40" /></td>
+                    <td><img src="~/img/@string.Format("{0}.svg", Model.Picks[i].Match.AwayTeam.ShortName)" height="40" width="40" /></td>
+                    <td>@string.Format("{0} {1}", Model.Picks[i].Match.AwayTeam.City, Model.Picks[i].Match.AwayTeam.Name)</td>
+                    <td>@Html.RadioButtonFor(m => m.Picks[i].Choice, Models.MatchPick.Away)</td>
+                    <td>@Html.RadioButtonFor(m => m.Picks[i].Choice, Models.MatchPick.Home)</td>
+                    <td>@string.Format("{0} {1}", Model.Picks[i].Match.HomeTeam.City, Model.Picks[i].Match.HomeTeam.Name)</td>
+                    <td><img src="~/img/@string.Format("{0}.svg", Model.Picks[i].Match.HomeTeam.ShortName)" height="40" width="40" /></td>
 
-                <td><span asp-validation-for="Picks[i].Choice" class="text-danger"></span></td>
-            </tr>
-        }
-        </table>
+                    <td><span asp-validation-for="Picks[i].Choice" class="text-danger"></span></td>
+                </tr>
+            }
+            </table>
 
-        <div class="form-group">
-            <input type="submit" value="Save" class="btn btn-primary" />
-        </div>
-    </form>
-</div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
+    <div>
+        <a asp-page="./Index">Back to List</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+}
+else
+{
+    <h4>Games started ... cannot edit picks right now ...</h4>
 }

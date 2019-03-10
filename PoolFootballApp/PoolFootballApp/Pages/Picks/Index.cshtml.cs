@@ -81,8 +81,6 @@ namespace PoolFootballApp.Pages.Picks
 					Matches.Add(m);
 					PicksLookup.Add(m.Id, _context.Picks.Where(p => p.MatchId == m.Id).ToList());
 				});
-
-			Console.WriteLine("TEST");
 		}
 	}
 }
