@@ -32,14 +32,14 @@ namespace PoolFootballApp.Pages.Picks
 
 		public async Task<IActionResult> OnGetAsync()
 		{
-			CheckMatchStarted();
-
 			int season = _config.GetValue<int>("Values:CurrentSeason");
 			//TimeSpan span = (DateTime.Today - DateTime.Parse(_config["Values:StartDate"]));
 			//int week = ((int)(span.TotalDays / 7)) + 1;
 			// TEMP VALUE FOR TESTING
 			int week = 1;
 			string userId = _userManager.GetUserId(User);
+
+			if (CheckMatchStarted(season, week)) return Page();
 
 			bool addedAny = false;
 			MatchIds = new List<int>();
@@ -100,10 +100,38 @@ namespace PoolFootballApp.Pages.Picks
 			return RedirectToPage("./Index");
 		}
 
-		private void CheckMatchStarted()
+		private bool CheckMatchStarted(int season, int week)
 		{
-			// Need to add logic to check if any match started
-			AnyMatchStarted = false;
+			Match earliest = _context.Matches
+				.Where(m => m.Season == season && m.Week == week)
+				.OrderBy(m => m.WeekDay)
+				.ThenBy(m => m.StartTime)
+				.FirstOrDefault();
+
+			if (earliest == null)
+			{
+				AnyMatchStarted = true;
+			}
+			else
+			{
+				// TO UNCOMMENT WHEN THE SEASON STARTS
+				//DateTime matchStart = DateTime.Parse(_config["Values:StartDate"]);
+				//matchStart.AddDays(week * 7);
+				//matchStart.AddHours(earliest.StartTime.Hour);
+				//matchStart.AddMinutes(earliest.StartTime.Minute);
+
+				//if (DateTime.Now > matchStart)
+				//{
+				//	AnyMatchStarted = true;
+				//}
+				//else
+				//{
+				//	AnyMatchStarted = false;
+				//}
+				AnyMatchStarted = false;
+			}
+
+			return AnyMatchStarted;
 		}
 	}
 }
