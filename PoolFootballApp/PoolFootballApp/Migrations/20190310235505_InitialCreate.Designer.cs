@@ -10,7 +10,7 @@ using PoolFootballApp.Models;
 namespace PoolFootballApp.Migrations
 {
     [DbContext(typeof(NFLContext))]
-    [Migration("20190303234537_InitialCreate")]
+    [Migration("20190310235505_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,6 +65,8 @@ namespace PoolFootballApp.Migrations
                     b.Property<string>("Signature");
 
                     b.Property<string>("Title");
+
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 

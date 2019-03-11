@@ -17,7 +17,8 @@ namespace PoolFootballApp.Migrations
                     Title = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
                     Signature = table.Column<string>(nullable: true),
-                    PostTime = table.Column<DateTime>(nullable: false)
+                    PostTime = table.Column<DateTime>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
