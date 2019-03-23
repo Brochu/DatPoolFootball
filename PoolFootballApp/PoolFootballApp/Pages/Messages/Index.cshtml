@@ -5,56 +5,27 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Messages List</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Message[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Message[0].Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Message[0].Signature)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Message[0].PostTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Message[0].UserId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
 @foreach (var item in Model.Message) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Signature)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+<div class="col-md-10">
+    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+
+    <textarea class="offset-1 form-control-plaintext border-primary" style="height:200px" readonly>
+        @item.Content
+    </textarea>
+
+    <p class="font-italic offset-1">@Html.DisplayFor(modelItem => item.Signature)</p>
+
+    <p>@Html.DisplayFor(modelItem => item.PostTime)</p>
+
+    <p>
+        <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+    </p>
+</div>
+
+<hr />
 }
-    </tbody>
-</table>

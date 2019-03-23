@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,34 +10,39 @@ using PoolFootballApp.Models;
 
 namespace PoolFootballApp.Pages.Messages
 {
-    public class CreateModel : PageModel
-    {
-        private readonly PoolFootballApp.Models.NFLContext _context;
+	public class CreateModel : PageModel
+	{
+		private readonly NFLContext _context;
+		private readonly UserManager<IdentityUser> _userManager;
 
-        public CreateModel(PoolFootballApp.Models.NFLContext context)
-        {
-            _context = context;
-        }
+		public CreateModel(NFLContext context, UserManager<IdentityUser> userManager)
+		{
+			_context = context;
+			_userManager = userManager;
+		}
 
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
+		public IActionResult OnGet()
+		{
+			return Page();
+		}
 
-        [BindProperty]
-        public Message Message { get; set; }
+		[BindProperty]
+		public Message Message { get; set; }
 
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+		public async Task<IActionResult> OnPostAsync()
+		{
+			if (!ModelState.IsValid)
+			{
+				return Page();
+			}
 
-            _context.Messages.Add(Message);
-            await _context.SaveChangesAsync();
+			Message.PostTime = DateTime.Now;
+			Message.UserId = _userManager.GetUserId(User);
+			_context.Messages.Add(Message);
 
-            return RedirectToPage("./Index");
-        }
-    }
+			await _context.SaveChangesAsync();
+
+			return RedirectToPage("./Index");
+		}
+	}
 }

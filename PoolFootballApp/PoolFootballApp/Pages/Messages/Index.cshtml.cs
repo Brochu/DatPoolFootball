@@ -9,20 +9,22 @@ using PoolFootballApp.Models;
 
 namespace PoolFootballApp.Pages.Messages
 {
-    public class IndexModel : PageModel
-    {
-        private readonly PoolFootballApp.Models.NFLContext _context;
+	public class IndexModel : PageModel
+	{
+		private readonly NFLContext _context;
 
-        public IndexModel(PoolFootballApp.Models.NFLContext context)
-        {
-            _context = context;
-        }
+		public IndexModel(NFLContext context)
+		{
+			_context = context;
+		}
 
-        public IList<Message> Message { get;set; }
+		public IList<Message> Message { get;set; }
 
-        public async Task OnGetAsync()
-        {
-            Message = await _context.Messages.ToListAsync();
-        }
-    }
+		public async Task OnGetAsync()
+		{
+			Message = await _context.Messages
+				.OrderBy(m => m.PostTime)
+				.ToListAsync();
+		}
+	}
 }
