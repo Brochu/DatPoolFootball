@@ -41,5 +41,23 @@ namespace PoolFootballApp.Pages.Messages
 			}
 			return Page();
 		}
+
+		public async Task<IActionResult> OnPostAsync(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+
+			Message = await _context.Messages.FindAsync(id);
+
+			if (Message != null)
+			{
+				_context.Messages.Remove(Message);
+				await _context.SaveChangesAsync();
+			}
+
+			return RedirectToPage("./Index");
+		}
 	}
 }
