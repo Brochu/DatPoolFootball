@@ -48,10 +48,6 @@ namespace PoolFootballApp.Pages.Messages
 					.Take(_pageCount)
 					.ToListAsync();
 			}
-			else
-			{
-				Messages = new List<Message>();
-			}
 		}
 	}
 }

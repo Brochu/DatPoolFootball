@@ -30,9 +30,19 @@
     </tr>
 
     <tr>
-        <td></td>
+        <td>
+        @foreach (var pick in Model.PicksLookup[m.Id].Where(c => c.Choice == Models.MatchPick.Away))
+        {
+            <span class="font-weight-light">@Model.UsersLookup[pick.UserId], </span>
+        }
+        </td>
         <td> -- </td>
-        <td></td>
+        <td>
+        @foreach (var pick in Model.PicksLookup[m.Id].Where(c => c.Choice == Models.MatchPick.Home))
+        {
+            <span class="font-weight-light">@Model.UsersLookup[pick.UserId], </span>
+        }
+        </td>
     </tr>
 }
 </table>
