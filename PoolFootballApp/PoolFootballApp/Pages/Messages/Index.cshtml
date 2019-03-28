@@ -7,25 +7,32 @@
 
 <h1>Messages List</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-@foreach (var item in Model.Message) {
-<div class="col-md-10">
-    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
-
-    <textarea class="offset-1 form-control-plaintext border-primary" style="height:200px" readonly>
-        @item.Content
-    </textarea>
-
-    <p class="font-italic offset-1">@Html.DisplayFor(modelItem => item.Signature)</p>
-
-    <p>@Html.DisplayFor(modelItem => item.PostTime)</p>
-
+@if (Model.Messages.Count <= 0)
+{
+    <h2>You are not a part of any pools :(</h2>
+}
+else
+{
     <p>
-        <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+        <a asp-page="Create">Create New</a>
     </p>
-</div>
+    @foreach (var item in Model.Messages) {
+    <div class="col-md-10">
+        <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
 
-<hr />
+        <textarea class="offset-1 form-control-plaintext border-primary" style="height:200px" readonly>
+            @item.Content
+        </textarea>
+
+        <p class="font-italic offset-1">@Html.DisplayFor(modelItem => item.Signature)</p>
+
+        <p>@Html.DisplayFor(modelItem => item.PostTime)</p>
+
+        <p>
+            <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+        </p>
+    </div>
+
+    <hr />
+    }
 }
