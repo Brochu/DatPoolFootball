@@ -28,4 +28,11 @@ else
 
         puts "new Match { Season = #{season}, Week = #{week}, HomeTeamId = \"#{home}\", HomeScore = #{homeScore}, AwayTeamId = \"#{away}\", AwayScore = #{awayScore}, WeekDay = Day.#{weekDay}, StartTime = DateTime.Parse(\"#{startTime.strftime("%H:%M")}\") },";
     end
+
+    xmlDoc.get_elements("//g").each do |game|
+        home = game.attribute("h");
+        away = game.attribute("v");
+
+	puts "#{away} vs. #{home}"
+    end
 end
