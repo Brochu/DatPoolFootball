@@ -23,6 +23,6 @@ else
     weekData = JSON.parse(Hash.from_xml(result).to_json);
     games = weekData["ss"]["gms"]["g"];
     games.each do |game|
-        puts "#{game["vnn"]} #{game["vs"]} vs. #{game["hs"]} #{game["hnn"]}";
+        puts "#{game["v"]} #{game["vs"]} vs. #{game["hs"]} #{game["h"]}";
     end
 end
