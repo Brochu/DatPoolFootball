@@ -1,0 +1,286 @@
+{
+  "games": [
+    {
+      "d": "Thu",
+      "t": "8:20",
+      "q": "F",
+      "h": "GB",
+      "hnn": "packers",
+      "hs": "27",
+      "v": "PHI",
+      "vnn": "eagles",
+      "vs": "34",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "F",
+      "h": "ATL",
+      "hnn": "falcons",
+      "hs": "10",
+      "v": "TEN",
+      "vnn": "titans",
+      "vs": "24",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "F",
+      "h": "BAL",
+      "hnn": "ravens",
+      "hs": "25",
+      "v": "CLE",
+      "vnn": "browns",
+      "vs": "40",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "F",
+      "h": "BUF",
+      "hnn": "bills",
+      "hs": "10",
+      "v": "NE",
+      "vnn": "patriots",
+      "vs": "16",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "F",
+      "h": "DET",
+      "hnn": "lions",
+      "hs": "30",
+      "v": "KC",
+      "vnn": "chiefs",
+      "vs": "34",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "F",
+      "h": "HOU",
+      "hnn": "texans",
+      "hs": "10",
+      "v": "CAR",
+      "vnn": "panthers",
+      "vs": "16",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "F",
+      "h": "IND",
+      "hnn": "colts",
+      "hs": "24",
+      "v": "OAK",
+      "vnn": "raiders",
+      "vs": "31",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "F",
+      "h": "MIA",
+      "hnn": "dolphins",
+      "hs": "10",
+      "v": "LAC",
+      "vnn": "chargers",
+      "vs": "30",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "F",
+      "h": "NYG",
+      "hnn": "giants",
+      "hs": "24",
+      "v": "WAS",
+      "vnn": "redskins",
+      "vs": "3",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "4:05",
+      "q": "F",
+      "h": "ARI",
+      "hnn": "cardinals",
+      "hs": "10",
+      "v": "SEA",
+      "vnn": "seahawks",
+      "vs": "27",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "4:05",
+      "q": "F",
+      "h": "LA",
+      "hnn": "rams",
+      "hs": "40",
+      "v": "TB",
+      "vnn": "buccaneers",
+      "vs": "55",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "4:25",
+      "q": "F",
+      "h": "CHI",
+      "hnn": "bears",
+      "hs": "16",
+      "v": "MIN",
+      "vnn": "vikings",
+      "vs": "6",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "4:25",
+      "q": "F",
+      "h": "DEN",
+      "hnn": "broncos",
+      "hs": "24",
+      "v": "JAX",
+      "vnn": "jaguars",
+      "vs": "26",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "8:20",
+      "q": "F",
+      "h": "NO",
+      "hnn": "saints",
+      "hs": "12",
+      "v": "DAL",
+      "vnn": "cowboys",
+      "vs": "10",
+      "gt": "REG"
+    },
+    {
+      "d": "Mon",
+      "t": "8:15",
+      "q": "F",
+      "h": "PIT",
+      "hnn": "steelers",
+      "hs": "27",
+      "v": "CIN",
+      "vnn": "bengals",
+      "vs": "3",
+      "gt": "REG"
+    }
+  ],
+  "predictions": [
+    {
+      "pooler": "Alex",
+      "picks": [
+        "GB",
+        "ATL",
+        "BAL",
+        "NE",
+        "KC",
+        "HOU",
+        "IND",
+        "LAC",
+        "WAS",
+        "SEA",
+        "TB",
+        "CHI",
+        "JAX",
+        "DAL",
+        "PIT"
+      ]
+    },
+    {
+      "pooler": "Am├ö├Â┬úÔö£┬ú",
+      "picks": [
+        "GB",
+        "ATL",
+        "BAL",
+        "NE",
+        "KC",
+        "CAR",
+        "IND",
+        "LAC",
+        "NYG",
+        "ARI",
+        "LA",
+        "MIN",
+        "DEN",
+        "NO",
+        "PIT"
+      ]
+    },
+    {
+      "pooler": "Denis",
+      "picks": [
+        "GB",
+        "ATL",
+        "BAL",
+        "NE",
+        "KC",
+        "HOU",
+        "IND",
+        "LAC",
+        "NYG",
+        "SEA",
+        "LA",
+        "MIN",
+        "JAX",
+        "DAL",
+        "PIT"
+      ]
+    },
+    {
+      "pooler": "Jos├Üe",
+      "picks": [
+        "GB",
+        "ATL",
+        "BAL",
+        "NE",
+        "KC",
+        "CAR",
+        "IND",
+        "LAC",
+        "NYG",
+        "SEA",
+        "LA",
+        "MIN",
+        "JAX",
+        "DAL",
+        "PIT"
+      ]
+    },
+    {
+      "pooler": "Cam",
+      "picks": [
+        "GB",
+        "ATL",
+        "BAL",
+        "NE",
+        "KC",
+        "CAR",
+        "IND",
+        "LAC",
+        "NYG",
+        "SEA",
+        "LA",
+        "MIN",
+        "JAX",
+        "NO",
+        "PIT"
+      ]
+    }
+  ]
+}

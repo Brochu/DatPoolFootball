@@ -13,16 +13,35 @@ else
     season = ARGV[0];
     week = ARGV[1];
     type = ARGV[2];
-    #puts "Looking at season #{season} and week #{week}";
 
     uri = URI("http://www.nfl.com/ajax/scorestrip?season=#{season}&week=#{week}&seasonType=#{type}");
-    #puts "Fetching from uri : #{uri}";
 
     result = Net::HTTP.get(uri);
 
     weekData = JSON.parse(Hash.from_xml(result).to_json);
     games = weekData["ss"]["gms"]["g"];
     games.each do |game|
-        puts "#{game["v"]} #{game["vs"]} vs. #{game["hs"]} #{game["h"]}";
+        game.delete("eid");
+        game.delete("gsis");
+        game.delete("k");
+        game.delete("p");
+        game.delete("rz");
+        game.delete("ga");
     end
+
+    filename = "pool-#{season}-#{week}-#{type}.txt"
+    outputObj = {};
+    if (File.exists?(filename))
+        outputObj = JSON.parse(File.read(filename));
+        outputObj["games"] = games;
+    else
+        outputObj = {
+            :games => games,
+            :predictions => []
+        }
+    end
+
+    file = File.open(filename, "w");
+    file.write(JSON.pretty_generate(outputObj));
+    file.close();
 end
