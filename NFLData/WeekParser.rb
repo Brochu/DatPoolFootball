@@ -7,9 +7,7 @@ require 'active_support/core_ext/hash'
 
 include REXML
 
-if (ARGV.length < 3 || ARGV.length > 3)
-    puts "NEED TO SPECIFY SEASON, WEEK AND TYPE";
-else
+if (ARGV.length == 3)
     season = ARGV[0];
     week = ARGV[1];
     type = ARGV[2];
@@ -29,7 +27,7 @@ else
         game.delete("ga");
     end
 
-    filename = "pool-#{season}-#{week}-#{type}.txt"
+    filename = "pool-#{season}-#{week}-#{type}.json"
     outputObj = {};
     if (File.exists?(filename))
         outputObj = JSON.parse(File.read(filename));
@@ -44,4 +42,6 @@ else
     file = File.open(filename, "w");
     file.write(JSON.pretty_generate(outputObj));
     file.close();
+else
+    puts "NEED TO SPECIFY SEASON, WEEK AND TYPE";
 end
