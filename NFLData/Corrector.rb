@@ -2,17 +2,33 @@ require 'json'
 require 'active_support/core_ext/hash'
 
 def getWeekScore(weekData)
-    return 1;
+    result = [];
+    weekData["games"].each_with_index do |g, i|
+        element = { :game => g };
+        picks = [];
+
+        weekData["predictions"].each do |p|
+            picks.push({
+                :pooler => p["pooler"],
+                :pick => p["picks"][i]
+            });
+        end
+
+        element["picks"] = picks;
+        result.push(element);
+    end
+
+    return result;
 end
 
 def printWeekScores(scoresData)
-    puts scoresData;
+    puts JSON.pretty_generate(scoresData);
 end
 
 def printTotalScores(scoresArray)
     scoresArray.each { |s| 
         if (s != nil)
-            puts s;
+            puts JSON.pretty_generate(s);
         end
     };
 end
