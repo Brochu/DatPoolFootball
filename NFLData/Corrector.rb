@@ -14,7 +14,7 @@ def getWeekScore(weekData)
             });
         end
 
-        element["picks"] = picks;
+        element[:picks] = picks;
         result.push(element);
     end
 
@@ -22,7 +22,24 @@ def getWeekScore(weekData)
 end
 
 def printWeekScores(scoresData)
-    puts JSON.pretty_generate(scoresData);
+    totals = [];
+    scoresData.each do |score|
+        matchString = "#{score[:game]["v"]} (#{score[:game]["vs"]}) | #{score[:game]["h"]} (#{score[:game]["hs"]}) -- ";
+        matchString.concat(score[:picks].reduce("") { |str, p| 
+            str.concat("#{p[:pooler]}:#{p[:pick]} | ");
+        });
+        puts matchString;
+
+        homeUniqueCheck = score[:picks].one? do |p|
+            p[:pick] == score[:game]["h"];
+        end
+        #puts homeUniqueCheck;
+
+        visitUniqueCheck = score[:picks].one? do |p|
+            p[:pick] == score[:game]["v"];
+        end
+        #puts visitUniqueCheck;
+    end
 end
 
 def printTotalScores(scoresArray)
