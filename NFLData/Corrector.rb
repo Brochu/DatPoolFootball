@@ -25,21 +25,55 @@ def printWeekScores(scoresData)
     totals = [];
     scoresData.each do |score|
         matchString = "#{score[:game]["v"]} (#{score[:game]["vs"]}) | #{score[:game]["h"]} (#{score[:game]["hs"]}) -- ";
-        matchString.concat(score[:picks].reduce("") { |str, p| 
-            str.concat("#{p[:pooler]}:#{p[:pick]} | ");
-        });
-        puts matchString;
 
         homeUniqueCheck = score[:picks].one? do |p|
             p[:pick] == score[:game]["h"];
         end
-        #puts homeUniqueCheck;
-
         visitUniqueCheck = score[:picks].one? do |p|
             p[:pick] == score[:game]["v"];
         end
-        #puts visitUniqueCheck;
+
+        score[:picks].each { |p| 
+            matchString.concat("#{p[:pooler]}:#{p[:pick]} | ");
+            t = totals.find { |e| e[:pooler] == p[:pooler] };
+
+            scoreToAdd = 0;
+            if (score[:game]["hs"].to_i == score[:game]["vs"].to_i)
+                scoreToAdd = 1;
+
+            elsif (score[:game]["hs"].to_i > score[:game]["vs"].to_i &&
+            p[:pick] == score[:game]["h"])
+                if (homeUniqueCheck)
+                    scoreToAdd = 3;
+                else
+                    scoreToAdd = 2;
+                end
+
+            elsif (score[:game]["vs"].to_i > score[:game]["hs"].to_i &&
+            p[:pick] == score[:game]["v"])
+                if (visitUniqueCheck)
+                    scoreToAdd = 3;
+                else
+                    scoreToAdd = 2;
+                end
+            end
+
+            if (t != nil)
+                t[:score] += scoreToAdd;
+            else
+                totals.push({
+                    :pooler => p[:pooler],
+                    :score => scoreToAdd
+                });
+            end
+        };
+        puts matchString;
     end
+
+    puts totals;
+
+    # Return to make the grand total calculation easier down the line
+    return totals;
 end
 
 def printTotalScores(scoresArray)
