@@ -2,86 +2,75 @@ require 'json'
 require 'active_support/core_ext/hash'
 
 def getWeekScore(weekData)
-    result = [];
-    weekData["games"].each_with_index do |g, i|
-        element = { :game => g };
-        picks = [];
-
-        weekData["predictions"].each do |p|
-            picks.push({
-                :pooler => p["pooler"],
-                :pick => p["picks"][i]
-            });
+    weekData["games"].each_with_index do |game, i|
+        homeUnique = weekData["predictions"].one? do |p|
+            p["picks"][i] == game["h"];
+        end
+        visitUnique = weekData["predictions"].one? do |p|
+            p["picks"][i] == game["v"];
         end
 
-        element[:picks] = picks;
-        result.push(element);
+        weekData["predictions"].each do |p|
+            result = 0;
+            homeScore = game["hs"].to_i();
+            visitScore = game["vs"].to_i();
+
+            if (homeScore == visitScore)
+                result = 1;
+
+            elsif (homeScore > visitScore && p["picks"][i] == game["h"])
+                result = (homeUnique) ? 3 : 2;
+
+            elsif (visitScore > homeScore && p["picks"][i] == game["v"])
+                result = (visitUnique) ? 3 : 2;
+            end
+
+            if (p[:result] != nil)
+                p[:result] += result;
+            else
+                p[:result] = result;
+            end
+        end
     end
 
-    return result;
+    return weekData;
 end
 
 def printWeekScores(scoresData)
-    totals = [];
-    scoresData.each do |score|
-        matchString = "#{score[:game]["v"]} (#{score[:game]["vs"]}) | #{score[:game]["h"]} (#{score[:game]["hs"]}) -- ";
-
-        homeUniqueCheck = score[:picks].one? do |p|
-            p[:pick] == score[:game]["h"];
-        end
-        visitUniqueCheck = score[:picks].one? do |p|
-            p[:pick] == score[:game]["v"];
+    scoresData["games"].each_with_index do |game, i|
+        gameStr = "#{game["v"]} vs. #{game["h"]} | ";
+        scoresData["predictions"].each do |p|
+            gameStr.concat("#{p["pooler"]}: #{p["picks"][i]} -- ");
         end
 
-        score[:picks].each { |p| 
-            matchString.concat("#{p[:pooler]}:#{p[:pick]} | ");
-            t = totals.find { |e| e[:pooler] == p[:pooler] };
-
-            scoreToAdd = 0;
-            if (score[:game]["hs"].to_i == score[:game]["vs"].to_i)
-                scoreToAdd = 1;
-
-            elsif (score[:game]["hs"].to_i > score[:game]["vs"].to_i &&
-            p[:pick] == score[:game]["h"])
-                if (homeUniqueCheck)
-                    scoreToAdd = 3;
-                else
-                    scoreToAdd = 2;
-                end
-
-            elsif (score[:game]["vs"].to_i > score[:game]["hs"].to_i &&
-            p[:pick] == score[:game]["v"])
-                if (visitUniqueCheck)
-                    scoreToAdd = 3;
-                else
-                    scoreToAdd = 2;
-                end
-            end
-
-            if (t != nil)
-                t[:score] += scoreToAdd;
-            else
-                totals.push({
-                    :pooler => p[:pooler],
-                    :score => scoreToAdd
-                });
-            end
-        };
-        puts matchString;
+        puts gameStr;
     end
 
-    puts totals;
+    totals = scoresData["predictions"].map do |p|
+        # "#{p["pooler"]}: #{p[:result]} points"
+        { :pooler => p["pooler"], :result => p[:result] };
+    end
 
-    # Return to make the grand total calculation easier down the line
-    return totals;
+    puts "This week: #{JSON.pretty_generate(totals)}";
+    return totals
 end
 
 def printTotalScores(scoresArray)
-    scoresArray.each { |s| 
-        if (s != nil)
-            puts JSON.pretty_generate(s);
+    grandTotal = nil;
+    scoresArray.each do |s|
+        if (grandTotal == nil)
+            grandTotal = printWeekScores(s);
+        else
+            total = printWeekScores(s);
+            total.each do |t|
+                entry = grandTotal.find { |g| g[:pooler] == t[:pooler] };
+                entry[:result] += t[:result];
+            end
         end
-    };
+    end
+
+    puts "";
+    puts "GRAND TOTALS: #{JSON.pretty_generate(grandTotal)}";
 end
 
 if (ARGV.length == 3)
@@ -99,14 +88,14 @@ elsif (ARGV.length == 2)
     type = ARGV[1];
 
     filepaths = (1..17).map { |w| "pool-#{season}-#{w}-#{type}.json" };
-    scoresArray = filepaths.map { |file|
+    scoresArray = filepaths.map do |file|
         if (File.exists?(file))
             getWeekScore(JSON.parse(File.read(file)));
         else
             nil;
         end
-    };
-    printTotalScores(scoresArray);
+    end
+    printTotalScores(scoresArray.compact);
 
 else
     puts "NEED TO SPECIFY SEASON, WEEK AND TYPE OR SEASON AND TYPE";
