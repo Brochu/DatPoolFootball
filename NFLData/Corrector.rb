@@ -16,7 +16,7 @@ def getWeekScore(weekData)
             visitScore = game["vs"].to_i();
 
             if (homeScore == visitScore)
-                result = 1;
+                result = (game["q"] != "P") ? 1 : 0;
 
             elsif (homeScore > visitScore && p["picks"][i] == game["h"])
                 result = (homeUnique) ? 3 : 2;
