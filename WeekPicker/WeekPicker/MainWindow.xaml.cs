@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -35,6 +37,9 @@ namespace WeekPicker
 
 		private void MainWindow1_Loaded(object sender, RoutedEventArgs e)
 		{
+			// Init season textbox
+			SeasonText.Text = DateTime.Now.Year.ToString();
+
 			// Init week picker items
 			for (int i = 0; i < SEASON_WEEK_COUNT; i++)
 			{
@@ -49,8 +54,6 @@ namespace WeekPicker
 
 		private void GoButton_Click(object sender, RoutedEventArgs e)
 		{
-			// Web request to get the match data
-
 			if (!int.TryParse(SeasonText.Text, out int season))
 			{
 				// Could not parse season year to int
@@ -58,6 +61,22 @@ namespace WeekPicker
 			}
 			int week = WeekPick.SelectedIndex + 1;
 			string type = TypePick.SelectedItem.ToString();
+
+			// Web request to get the match data
+			string xml = string.Empty;
+			string url = $"http://www.nfl.com/ajax/scorestrip?season={season}&week={week}&seasonType={type}";
+
+			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+
+			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+			using (Stream stream = response.GetResponseStream())
+			using (StreamReader reader = new StreamReader(stream))
+			{
+				xml = reader.ReadToEnd();
+			}
+
+			var picksWindow = new PicksWindow(xml);
+			picksWindow.ShowDialog();
 		}
 	}
 }
