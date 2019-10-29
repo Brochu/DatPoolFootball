@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml;
 
+using Newtonsoft.Json;
+
 namespace WeekPicker
 {
 	/// <summary>
@@ -22,36 +24,74 @@ namespace WeekPicker
 	/// </summary>
 	public partial class PicksWindow : Window
 	{
-		private class MatchOptions
+		private enum ColumnType
+		{
+			VisitLogo,
+			VisitTeam,
+			VsLabel,
+			HomeTeam,
+			HomeLogo,
+		}
+
+		private class MatchPick
 		{
 			public RadioButton VisitorPick;
 			public RadioButton HomePick;
+
+			public XmlNode GameData;
+
+			/// <summary>
+			/// This functions will return either "h" if the player picked the home team and "v" if they picked the visitor team
+			/// </summary>
+			/// <returns>"h" or "v"</returns>
+			public string SerializePick()
+			{
+				if (VisitorPick != null && VisitorPick.IsChecked.HasValue && VisitorPick.IsChecked.Value)
+					return GameData.Attributes["v"].Value;
+
+				else if (HomePick != null && HomePick.IsChecked.HasValue && HomePick.IsChecked.Value)
+					return GameData.Attributes["h"].Value;
+
+				else
+					return "N/A";
+			}
 		}
 
-		private const int TEST = 16;
-		private XmlDocument weekData;
-		private List<MatchOptions> picks;
+		[Serializable]
+		private class PickData
+		{
+			public string pooler;
+			public string[] picks;
+		}
 
-		public PicksWindow(string rawWeekData)
+		private int season;
+		private int week;
+		private string type;
+
+		private XmlDocument weekData;
+		private List<MatchPick> picks;
+
+		public PicksWindow(string rawWeekData, int s, int w, string t)
 		{
 			InitializeComponent();
+
+			season = s;
+			week = w;
+			type = t;
 
 			weekData = new XmlDocument();
 			weekData.LoadXml(rawWeekData);
 
-			picks = new List<MatchOptions>();
+			picks = new List<MatchPick>();
+		}
 
+		private void PicksWindow1_Loaded(object sender, RoutedEventArgs e)
+		{
 			XmlNodeList gamesList = weekData.SelectNodes("//g");
 			for(int i = 0; i < gamesList.Count; i++)
 			{
 				CreateElementForMatch(ref PicksGrid, gamesList[i], i);
 			}
-		}
-
-		private void PicksWindow1_Loaded(object sender, RoutedEventArgs e)
-		{
-			// Parse matches
-			// Create match elements
 		}
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -61,7 +101,19 @@ namespace WeekPicker
 
 		private void SaveButton_Click(object sender, RoutedEventArgs e)
 		{
-			// Save the picks to json
+			PickData toWrite = new PickData()
+			{
+				pooler = PoolerName.Text,
+				picks = picks.Select(p => p.SerializePick()).ToArray()
+			};
+
+			string output = JsonConvert.SerializeObject(toWrite);
+			Console.WriteLine(output);
+
+			string filename = $"{toWrite.pooler}-{season}-semaine{week}-{type}.json";
+			File.WriteAllText(filename, output);
+
+			Close();
 		}
 
 		private void CreateElementForMatch(ref Grid picksGrid, XmlNode game, int rowIndex)
@@ -70,21 +122,10 @@ namespace WeekPicker
 			{
 				Source = ConvertBitmap(NFLTeamDB.GetLogo(game.Attributes["v"].Value))
 			};
-			visitImage.SetValue(Grid.ColumnProperty, 0);
-			visitImage.SetValue(Grid.RowProperty, rowIndex);
-			picksGrid.Children.Add(visitImage);
+			picksGrid.Children.Add(visitImage.SetGridCoords(rowIndex, (int)ColumnType.VisitLogo) as Image);
 
-			string visitName = game.Attributes["vnn"].Value;
-			visitName.Replace(visitName[0], char.ToUpper(visitName[0]));
-			var visit = new RadioButton()
-			{
-				Content = $"{NFLTeamDB.GetFullname(game.Attributes["v"].Value)} {visitName}",
-				GroupName = rowIndex.ToString(),
-				VerticalAlignment = VerticalAlignment.Center
-			};
-			visit.SetValue(Grid.ColumnProperty, 1);
-			visit.SetValue(Grid.RowProperty, rowIndex);
-			picksGrid.Children.Add(visit);
+			var visit = CreateTeamButton(game.Attributes["v"].Value, game.Attributes["vnn"].Value, rowIndex);
+			picksGrid.Children.Add(visit.SetGridCoords(rowIndex, (int)ColumnType.VisitTeam) as RadioButton);
 
 			Label vs = new Label()
 			{
@@ -92,31 +133,29 @@ namespace WeekPicker
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center
 			};
-			vs.SetValue(Grid.ColumnProperty, 2);
-			vs.SetValue(Grid.RowProperty, rowIndex);
-			picksGrid.Children.Add(vs);
+			picksGrid.Children.Add(vs.SetGridCoords(rowIndex, (int)ColumnType.VsLabel) as Label);
 
-			string homeName = game.Attributes["hnn"].Value;
-			homeName.Replace(homeName[0], char.ToUpper(homeName[0]));
-			var home = new RadioButton()
-			{
-				Content = $"{NFLTeamDB.GetFullname(game.Attributes["h"].Value)} {homeName}",
-				GroupName = rowIndex.ToString(),
-				VerticalAlignment = VerticalAlignment.Center
-			};
-			home.SetValue(Grid.ColumnProperty, 3);
-			home.SetValue(Grid.RowProperty, rowIndex);
-			picksGrid.Children.Add(home);
+			var home = CreateTeamButton(game.Attributes["h"].Value, game.Attributes["hnn"].Value, rowIndex);
+			picksGrid.Children.Add(home.SetGridCoords(rowIndex, (int)ColumnType.HomeTeam) as RadioButton);
 
 			Image homeImage = new Image()
 			{
 				Source = ConvertBitmap(NFLTeamDB.GetLogo(game.Attributes["h"].Value))
 			};
-			homeImage.SetValue(Grid.ColumnProperty, 4);
-			homeImage.SetValue(Grid.RowProperty, rowIndex);
-			picksGrid.Children.Add(homeImage);
+			picksGrid.Children.Add(homeImage.SetGridCoords(rowIndex, (int)ColumnType.HomeLogo) as Image);
 
-			picks.Add(new MatchOptions() { HomePick = home, VisitorPick = visit });
+			picks.Add(new MatchPick() { HomePick = home, VisitorPick = visit, GameData = game });
+		}
+
+		private RadioButton CreateTeamButton(string shortname, string fullname, int rowIndex)
+		{
+			string visitName = $"{char.ToUpper(fullname[0])}{fullname.Substring(1)}";
+			return new RadioButton()
+			{
+				Content = $"{NFLTeamDB.GetFullname(shortname)} {visitName}",
+				GroupName = rowIndex.ToString(),
+				VerticalAlignment = VerticalAlignment.Center
+			};
 		}
 
 		private BitmapImage ConvertBitmap(System.Drawing.Bitmap bitmap)

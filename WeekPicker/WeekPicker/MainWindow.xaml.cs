@@ -75,7 +75,7 @@ namespace WeekPicker
 				xml = reader.ReadToEnd();
 			}
 
-			var picksWindow = new PicksWindow(xml);
+			var picksWindow = new PicksWindow(xml, season, week, type);
 			picksWindow.ShowDialog();
 		}
 	}

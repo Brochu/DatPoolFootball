@@ -45,6 +45,10 @@
             </Grid.RowDefinitions>
         </Grid>
 
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5">
+            <Label>Nom: </Label>
+            <TextBox x:Name="PoolerName" Height="21" Width="200"/>
+        </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" Margin="5">
             <Button x:Name="CancelButton" Height="30" Width="75" Margin="0 0 5 0" Click="CancelButton_Click">Cancel</Button>
             <Button x:Name="SaveButton" Height="30" Width="75" Margin="5 0 0 0" Click="SaveButton_Click">Save</Button>
