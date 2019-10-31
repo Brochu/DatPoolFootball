@@ -38,7 +38,7 @@ end
 
 def printWeekScores(scoresData)
     scoresData["games"].each_with_index do |game, i|
-        gameStr = "#{game["v"]} vs. #{game["h"]} | ";
+        gameStr = "#{game["v"]} (#{game["vs"]}) vs. (#{game["hs"]}) #{game["h"]} | ";
         scoresData["predictions"].each do |p|
             gameStr.concat("#{p["pooler"]}: #{p["picks"][i]} -- ");
         end
