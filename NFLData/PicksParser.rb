@@ -17,7 +17,14 @@ if (ARGV.length == 4)
         weekData = JSON.parse(File.read(filename));
 
         currentPicks = weekData["predictions"].detect { |e| e["pooler"] == picksData["pooler"] };
-        currentPicks["picks"] = picksData["picks"];
+        if (currentPicks != nil)
+            currentPicks["picks"] = picksData["picks"];
+        else
+            weekData["predictions"].push({
+                "pooler" => picksData["pooler"],
+                "picks" => picksData["picks"]
+            });
+        end
 
         file = File.open(filename, "w");
         file.write(JSON.pretty_generate(weekData));
