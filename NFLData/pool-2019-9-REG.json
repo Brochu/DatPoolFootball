@@ -188,6 +188,82 @@
         "BAL",
         "DAL"
       ]
+    },
+    {
+      "pooler": "Amé",
+      "picks": [
+        "SF",
+        "HOU",
+        "BUF",
+        "CAR",
+        "MIN",
+        "NYJ",
+        "PHI",
+        "PIT",
+        "OAK",
+        "SEA",
+        "DEN",
+        "GB",
+        "BAL",
+        "DAL"
+      ]
+    },
+    {
+      "pooler": "Cam",
+      "picks": [
+        "SF",
+        "HOU",
+        "WAS",
+        "CAR",
+        "KC",
+        "NYJ",
+        "PHI",
+        "IND",
+        "DET",
+        "SEA",
+        "DEN",
+        "GB",
+        "NE",
+        "DAL"
+      ]
+    },
+    {
+      "pooler": "Denis",
+      "picks": [
+        "SF",
+        "JAX",
+        "BUF",
+        "TEN",
+        "KC",
+        "MIA",
+        "PHI",
+        "IND",
+        "DET",
+        "SEA",
+        "DEN",
+        "GB",
+        "BAL",
+        "DAL"
+      ]
+    },
+    {
+      "pooler": "Josée",
+      "picks": [
+        "SF",
+        "JAX",
+        "BUF",
+        "CAR",
+        "MIN",
+        "NYJ",
+        "PHI",
+        "PIT",
+        "OAK",
+        "SEA",
+        "DEN",
+        "GB",
+        "NE",
+        "NYG"
+      ]
     }
   ]
 }
