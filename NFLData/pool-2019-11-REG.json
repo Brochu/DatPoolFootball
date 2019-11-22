@@ -188,6 +188,82 @@
         "LA",
         "KC"
       ]
+    },
+    {
+      "pooler": "Amé",
+      "picks": [
+        "PIT",
+        "CAR",
+        "DAL",
+        "IND",
+        "BUF",
+        "HOU",
+        "MIN",
+        "NO",
+        "WAS",
+        "SF",
+        "OAK",
+        "PHI",
+        "LA",
+        "KC"
+      ]
+    },
+    {
+      "pooler": "Camelia",
+      "picks": [
+        "PIT",
+        "CAR",
+        "DAL",
+        "IND",
+        "BUF",
+        "HOU",
+        "MIN",
+        "NO",
+        "WAS",
+        "SF",
+        "OAK",
+        "NE",
+        "LA",
+        "KC"
+      ]
+    },
+    {
+      "pooler": "Denis",
+      "picks": [
+        "PIT",
+        "CAR",
+        "DET",
+        "IND",
+        "BUF",
+        "BAL",
+        "MIN",
+        "NO",
+        "NYJ",
+        "SF",
+        "OAK",
+        "PHI",
+        "LA",
+        "KC"
+      ]
+    },
+    {
+      "pooler": "Josée",
+      "picks": [
+        "PIT",
+        "CAR",
+        "DAL",
+        "IND",
+        "BUF",
+        "BAL",
+        "MIN",
+        "NO",
+        "WAS",
+        "SF",
+        "OAK",
+        "PHI",
+        "LA",
+        "LAC"
+      ]
     }
   ]
 }
