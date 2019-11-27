@@ -188,6 +188,82 @@
         "SF",
         "BAL"
       ]
+    },
+    {
+      "pooler": "Amé",
+      "picks": [
+        "IND",
+        "BUF",
+        "CHI",
+        "PIT",
+        "CLE",
+        "ATL",
+        "NO",
+        "OAK",
+        "WAS",
+        "PHI",
+        "TEN",
+        "DAL",
+        "GB",
+        "LA"
+      ]
+    },
+    {
+      "pooler": "Cam",
+      "picks": [
+        "IND",
+        "BUF",
+        "NYG",
+        "PIT",
+        "MIA",
+        "ATL",
+        "CAR",
+        "OAK",
+        "WAS",
+        "SEA",
+        "JAX",
+        "NE",
+        "SF",
+        "BAL"
+      ]
+    },
+    {
+      "pooler": "Denis",
+      "picks": [
+        "IND",
+        "BUF",
+        "CHI",
+        "PIT",
+        "CLE",
+        "TB",
+        "NO",
+        "OAK",
+        "DET",
+        "SEA",
+        "TEN",
+        "NE",
+        "SF",
+        "LA"
+      ]
+    },
+    {
+      "pooler": "Josée",
+      "picks": [
+        "HOU",
+        "BUF",
+        "CHI",
+        "PIT",
+        "CLE",
+        "ATL",
+        "NO",
+        "OAK",
+        "DET",
+        "SEA",
+        "JAX",
+        "NE",
+        "SF",
+        "BAL"
+      ]
     }
   ]
 }
