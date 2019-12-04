@@ -1,0 +1,219 @@
+{
+  "games": [
+    {
+      "d": "Thu",
+      "t": "8:20",
+      "q": "P",
+      "h": "CHI",
+      "hnn": "bears",
+      "hs": "",
+      "v": "DAL",
+      "vnn": "cowboys",
+      "vs": "",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "P",
+      "h": "ATL",
+      "hnn": "falcons",
+      "hs": "",
+      "v": "CAR",
+      "vnn": "panthers",
+      "vs": "",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "P",
+      "h": "BUF",
+      "hnn": "bills",
+      "hs": "",
+      "v": "BAL",
+      "vnn": "ravens",
+      "vs": "",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "P",
+      "h": "CLE",
+      "hnn": "browns",
+      "hs": "",
+      "v": "CIN",
+      "vnn": "bengals",
+      "vs": "",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "P",
+      "h": "GB",
+      "hnn": "packers",
+      "hs": "",
+      "v": "WAS",
+      "vnn": "redskins",
+      "vs": "",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "P",
+      "h": "HOU",
+      "hnn": "texans",
+      "hs": "",
+      "v": "DEN",
+      "vnn": "broncos",
+      "vs": "",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "P",
+      "h": "MIN",
+      "hnn": "vikings",
+      "hs": "",
+      "v": "DET",
+      "vnn": "lions",
+      "vs": "",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "P",
+      "h": "NO",
+      "hnn": "saints",
+      "hs": "",
+      "v": "SF",
+      "vnn": "49ers",
+      "vs": "",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "P",
+      "h": "NYJ",
+      "hnn": "jets",
+      "hs": "",
+      "v": "MIA",
+      "vnn": "dolphins",
+      "vs": "",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "1:00",
+      "q": "P",
+      "h": "TB",
+      "hnn": "buccaneers",
+      "hs": "",
+      "v": "IND",
+      "vnn": "colts",
+      "vs": "",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "4:05",
+      "q": "P",
+      "h": "JAX",
+      "hnn": "jaguars",
+      "hs": "",
+      "v": "LAC",
+      "vnn": "chargers",
+      "vs": "",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "4:25",
+      "q": "P",
+      "h": "ARI",
+      "hnn": "cardinals",
+      "hs": "",
+      "v": "PIT",
+      "vnn": "steelers",
+      "vs": "",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "4:25",
+      "q": "P",
+      "h": "NE",
+      "hnn": "patriots",
+      "hs": "",
+      "v": "KC",
+      "vnn": "chiefs",
+      "vs": "",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "4:25",
+      "q": "P",
+      "h": "OAK",
+      "hnn": "raiders",
+      "hs": "",
+      "v": "TEN",
+      "vnn": "titans",
+      "vs": "",
+      "gt": "REG"
+    },
+    {
+      "d": "Sun",
+      "t": "8:20",
+      "q": "P",
+      "h": "LA",
+      "hnn": "rams",
+      "hs": "",
+      "v": "SEA",
+      "vnn": "seahawks",
+      "vs": "",
+      "gt": "REG"
+    },
+    {
+      "d": "Mon",
+      "t": "8:15",
+      "q": "P",
+      "h": "PHI",
+      "hnn": "eagles",
+      "hs": "",
+      "v": "NYG",
+      "vnn": "giants",
+      "vs": "",
+      "gt": "REG"
+    }
+  ],
+  "predictions": [
+    {
+      "pooler": "Alex",
+      "picks": [
+        "CHI",
+        "CAR",
+        "BAL",
+        "CIN",
+        "GB",
+        "HOU",
+        "MIN",
+        "SF",
+        "NYJ",
+        "TB",
+        "LAC",
+        "PIT",
+        "KC",
+        "TEN",
+        "SEA",
+        "PHI"
+      ]
+    }
+  ]
+}
