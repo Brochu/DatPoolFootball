@@ -171,25 +171,25 @@
     {
       "d": "Sun",
       "t": "8:20",
-      "q": "P",
+      "q": "F",
       "h": "HOU",
       "hnn": "texans",
-      "hs": "",
+      "hs": "28",
       "v": "NE",
       "vnn": "patriots",
-      "vs": "",
+      "vs": "22",
       "gt": "REG"
     },
     {
       "d": "Mon",
       "t": "8:15",
-      "q": "P",
+      "q": "F",
       "h": "SEA",
       "hnn": "seahawks",
-      "hs": "",
+      "hs": "37",
       "v": "MIN",
       "vnn": "vikings",
-      "vs": "",
+      "vs": "30",
       "gt": "REG"
     }
   ],
