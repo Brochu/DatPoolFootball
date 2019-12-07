@@ -3,13 +3,13 @@
     {
       "d": "Thu",
       "t": "8:20",
-      "q": "P",
+      "q": "F",
       "h": "CHI",
       "hnn": "bears",
-      "hs": "",
+      "hs": "31",
       "v": "DAL",
       "vnn": "cowboys",
-      "vs": "",
+      "vs": "24",
       "gt": "REG"
     },
     {
@@ -211,6 +211,90 @@
         "PIT",
         "KC",
         "TEN",
+        "SEA",
+        "PHI"
+      ]
+    },
+    {
+      "pooler": "Am├ö├Â┬úÔö£├é├ö├Â┬úÔö£├®├ö├Â┬╝Ôö£ÔòæÔö£├ÂÔö£├éÔö¼ÔòØ├ö├Â┬╝Ôö¼┬ó",
+      "picks": [
+        "DAL",
+        "ATL",
+        "BAL",
+        "CLE",
+        "N/A",
+        "HOU",
+        "MIN",
+        "SF",
+        "NYJ",
+        "IND",
+        "LAC",
+        "PIT",
+        "NE",
+        "TEN",
+        "SEA",
+        "PHI"
+      ]
+    },
+    {
+      "pooler": "Camelia",
+      "picks": [
+        "DAL",
+        "CAR",
+        "BAL",
+        "CLE",
+        "GB",
+        "HOU",
+        "MIN",
+        "SF",
+        "MIA",
+        "TB",
+        "LAC",
+        "PIT",
+        "NE",
+        "TEN",
+        "SEA",
+        "PHI"
+      ]
+    },
+    {
+      "pooler": "Denis",
+      "picks": [
+        "CHI",
+        "ATL",
+        "BAL",
+        "CLE",
+        "GB",
+        "HOU",
+        "MIN",
+        "SF",
+        "NYJ",
+        "TB",
+        "LAC",
+        "PIT",
+        "KC",
+        "OAK",
+        "LA",
+        "PHI"
+      ]
+    },
+    {
+      "pooler": "Josee",
+      "picks": [
+        "CHI",
+        "ATL",
+        "BAL",
+        "CLE",
+        "GB",
+        "HOU",
+        "MIN",
+        "SF",
+        "MIA",
+        "TB",
+        "LAC",
+        "PIT",
+        "NE",
+        "OAK",
         "SEA",
         "PHI"
       ]
