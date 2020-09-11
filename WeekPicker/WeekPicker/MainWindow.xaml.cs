@@ -15,6 +15,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 namespace WeekPicker
 {
 	/// <summary>
@@ -22,13 +25,7 @@ namespace WeekPicker
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private const int SEASON_WEEK_COUNT = 17;
-		private enum Types
-		{
-			PRE,
-			REG,
-			POST // Still need to find what value works for this
-		}
+		private const int SEASON_WEEK_COUNT = 21;
 
 		public MainWindow()
 		{
@@ -46,10 +43,6 @@ namespace WeekPicker
 				WeekPick.Items.Add(new ComboBoxItem() { Content = $"semaine {i + 1}" });
 			}
 			WeekPick.SelectedIndex = 0;
-
-			// Init type picker items
-			TypePick.ItemsSource = Enum.GetValues(typeof(Types));
-			TypePick.SelectedIndex = 1;
 		}
 
 		private void GoButton_Click(object sender, RoutedEventArgs e)
@@ -60,22 +53,21 @@ namespace WeekPicker
 				return;
 			}
 			int week = WeekPick.SelectedIndex + 1;
-			string type = TypePick.SelectedItem.ToString();
 
 			// Web request to get the match data
-			string xml = string.Empty;
-			string url = $"http://www.nfl.com/ajax/scorestrip?season={season}&week={week}&seasonType={type}";
+			JObject json;
+			string url = $"https://www.thesportsdb.com/api/v1/json/1/eventsround.php?id=4391&r={week}&s={season}";
 
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 
 			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-			using (Stream stream = response.GetResponseStream())
-			using (StreamReader reader = new StreamReader(stream))
+			using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+            using (JsonTextReader jReader = new JsonTextReader(reader))
 			{
-				xml = reader.ReadToEnd();
+                json = (JObject)JToken.ReadFrom(jReader);
 			}
 
-			var picksWindow = new PicksWindow(xml, season, week, type);
+			var picksWindow = new PicksWindow(json, season, week);
 			picksWindow.ShowDialog();
 		}
 	}

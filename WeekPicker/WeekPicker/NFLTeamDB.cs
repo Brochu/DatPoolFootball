@@ -32,7 +32,7 @@ namespace WeekPicker
 			{ "NO", "New Orleans" },
 			{ "NYG", "New York" },
 			{ "NYJ", "New York" },
-			{ "OAK", "Oakland" },
+			{ "OAK", "Las Vegas" },
 			{ "PHI", "Philadelphia" },
 			{ "PIT", "Pittsburgh" },
 			{ "SEA", "Seattle" },
@@ -40,6 +40,44 @@ namespace WeekPicker
 			{ "TB", "Tampa Bay" },
 			{ "TEN", "Tennessee" },
 			{ "WAS", "Washington" }
+		};
+
+		private static Dictionary<string, string> invLookup = new Dictionary<string, string>()
+		{
+			{ "Arizona Cardinals", "ARI" },
+			{ "Atlanta Falcons", "ATL" },
+			{ "Baltimore Ravens", "BAL" },
+			{ "Buffalo Bills", "BUF" },
+			{ "Carolina Panthers", "CAR" },
+			{ "Chicago Bears", "CHI" },
+			{ "Cincinnati Bengals", "CIN" },
+			{ "Cleveland Browns", "CLE" },
+			{ "Dallas Cowboys", "DAL" },
+			{ "Denver Broncos", "DEN" },
+			{ "Detroit Lions", "DET" },
+			{ "Green Bay Packers", "GB" },
+			{ "Houston Texans", "HOU" },
+			{ "Indianapolis Colts", "IND" },
+			{ "Jacksonville Jaguars", "JAX" },
+			{ "Kansas City Chiefs", "KC" },
+			{ "Los Angeles Rams", "LA" },
+			{ "Los Angeles Chargers", "LAC" },
+			{ "Miami Dolphins", "MIA" },
+			{ "Minnesota Vikings", "MIN" },
+			{ "New England Patriots", "NE" },
+			{ "New Orleans Saints", "NO" },
+			{ "New York Giants", "NYG" },
+			{ "New York Jets", "NYJ" },
+			{ "Oakland Raiders", "OAK" },
+			{ "Las Vegas Raiders", "OAK" },
+			{ "Philadelphia Eagles", "PHI" },
+			{ "Pittsburgh Steelers", "PIT" },
+			{ "Seattle Seahawks", "SEA" },
+			{ "San Francisco 49ers", "SF" },
+			{ "Tampa Bay Buccaneers", "TB" },
+			{ "Tennessee Titans", "TEN" },
+			{ "Washington", "WAS" },
+			{ "Washington Redskins", "WAS" }
 		};
 
 		private static Dictionary<string, Bitmap> logoLookup = new Dictionary<string, Bitmap>()
@@ -77,6 +115,17 @@ namespace WeekPicker
 			{ "TEN", Properties.Resources.TEN },
 			{ "WAS", Properties.Resources.WAS }
 		};
+
+		public static string GetShortName(string fullname)
+		{
+			if (!invLookup.TryGetValue(fullname, out string shortname))
+			{
+				Console.WriteLine($"Could not get full name for full name {fullname}");
+				return "-NOT-FOUND-";
+			}
+
+			return shortname;
+		}
 
 		public static string GetFullname(string shortname)
 		{
