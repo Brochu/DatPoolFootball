@@ -3,24 +3,24 @@ require 'json'
 def getWeekScore(weekData)
     weekData["games"].each_with_index do |game, i|
         homeUnique = weekData["predictions"].one? do |p|
-            p["picks"][i] == game["h"];
+            p["picks"][i] == "H";
         end
         visitUnique = weekData["predictions"].one? do |p|
-            p["picks"][i] == game["v"];
+            p["picks"][i] == "V";
         end
 
         weekData["predictions"].each do |p|
             result = 0;
-            homeScore = game["hs"].to_i();
-            visitScore = game["vs"].to_i();
+            homeScore = (game["intHomeScore"] != nil) ? game["intHomeScore"].to_i() : nil;
+            visitScore = (game["intAwayScore"] != nil) ? game["intAwayScore"].to_i() : nil;
 
             if (homeScore == visitScore)
-                result = (game["q"] != "P") ? 1 : 0;
+                result = (homeScore != nil && visitScore != nil) ? 1 : 0;
 
-            elsif (homeScore > visitScore && p["picks"][i] == game["h"])
+            elsif (homeScore > visitScore && p["picks"][i] == "H")
                 result = (homeUnique) ? 3 : 2;
 
-            elsif (visitScore > homeScore && p["picks"][i] == game["v"])
+            elsif (visitScore > homeScore && p["picks"][i] == "V")
                 result = (visitUnique) ? 3 : 2;
             end
 
@@ -37,7 +37,7 @@ end
 
 def printWeekScores(scoresData)
     scoresData["games"].each_with_index do |game, i|
-        gameStr = "#{game["v"]} (#{game["vs"]}) vs. (#{game["hs"]}) #{game["h"]} | ";
+        gameStr = "#{game["strAwayTeam"]} (#{game["intAwayScore"]}) vs. (#{game["intHomeScore"]}) #{game["strHomeTeam"]} | ";
         scoresData["predictions"].each do |p|
             gameStr.concat("#{p["pooler"]}: #{p["picks"][i]} -- ");
         end

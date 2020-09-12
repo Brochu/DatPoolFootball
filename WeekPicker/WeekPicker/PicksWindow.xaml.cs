@@ -49,13 +49,11 @@ namespace WeekPicker
 			{
                 if (VisitorPick != null && VisitorPick.IsChecked.HasValue && VisitorPick.IsChecked.Value)
                 {
-                    GameData.TryGetValue("strAwayTeam", out JToken awayFullname);
-                    return NFLTeamDB.GetShortName(awayFullname.ToString());
+                    return "V";
                 }
 				else if (HomePick != null && HomePick.IsChecked.HasValue && HomePick.IsChecked.Value)
                 {
-                    GameData.TryGetValue("strHomeTeam", out JToken homeFullname);
-                    return NFLTeamDB.GetShortName(homeFullname.ToString());
+                    return "H";
                 }
 				else
 					return "N/A";
