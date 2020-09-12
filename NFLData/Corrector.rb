@@ -73,7 +73,7 @@ def printTotalScores(scoresArray)
     puts "GRAND TOTALS: #{JSON.pretty_generate(grandTotal)}";
 end
 
-if (ARGV.length = 2)
+if (ARGV.length == 2)
     season = ARGV[0];
     week = ARGV[1];
 

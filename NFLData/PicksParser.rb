@@ -4,12 +4,11 @@ require 'active_support/core_ext/hash'
 if (ARGV.length == 4)
     season = ARGV[0];
     week = ARGV[1];
-    type = ARGV[2];
     picksFile = ARGV[3];
 
     # PARSE PICKS AND ADD/UPDATE TO CORRECT WEEK
     # Picks format: { :pooler => "NAME", :picks => [ AAA, AAB, AAC, (...) ] }
-    filename = "pool-#{season}-#{week}-#{type}.json";
+    filename = "pool-#{season}-#{week}.json";
     if (!File.exists?(filename) || !File.exists?(picksFile))
         puts "COULD NOT FIND FILE #{filename} OR #{picksFile}";
     else
@@ -31,5 +30,5 @@ if (ARGV.length == 4)
         file.close();
     end
 else
-    puts "NEED TO SPECIFY SEASON, WEEK AND TYPE AND PICKS STRING";
+    puts "NEED TO SPECIFY SEASON, WEEK AND PICKS STRING";
 end
