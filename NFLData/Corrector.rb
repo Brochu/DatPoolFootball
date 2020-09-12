@@ -73,21 +73,19 @@ def printTotalScores(scoresArray)
     puts "GRAND TOTALS: #{JSON.pretty_generate(grandTotal)}";
 end
 
-if (ARGV.length == 3)
+if (ARGV.length = 2)
     season = ARGV[0];
     week = ARGV[1];
-    type = ARGV[2];
 
     # GET WEEK FILE AND APPLY CORRECTIONS
-    filename = "pool-#{season}-#{week}-#{type}.json"
+    filename = "pool-#{season}-#{week}.json"
     scores = getWeekScore(JSON.parse(File.read(filename)));
     printWeekScores(scores);
 
-elsif (ARGV.length == 2)
+elsif (ARGV.length == 1)
     season = ARGV[0];
-    type = ARGV[1];
 
-    filepaths = (1..17).map { |w| "pool-#{season}-#{w}-#{type}.json" };
+    filepaths = (1..21).map { |w| "pool-#{season}-#{w}.json" };
     scoresArray = filepaths.map do |file|
         if (File.exists?(file))
             getWeekScore(JSON.parse(File.read(file)));
@@ -98,5 +96,5 @@ elsif (ARGV.length == 2)
     printTotalScores(scoresArray.compact);
 
 else
-    puts "NEED TO SPECIFY SEASON, WEEK AND TYPE OR SEASON AND TYPE";
+    puts "NEED TO SPECIFY SEASON AND WEEK OR SEASON";
 end
