@@ -1,5 +1,4 @@
 require 'json'
-require 'active_support/core_ext/hash'
 
 def getWeekScore(weekData)
     weekData["games"].each_with_index do |game, i|

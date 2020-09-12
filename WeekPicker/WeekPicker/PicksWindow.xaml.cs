@@ -114,10 +114,10 @@ namespace WeekPicker
 			string output = JsonConvert.SerializeObject(toWrite);
 			Console.WriteLine(output);
 
-			string filename = $"{toWrite.pooler}-{season}-semaine{week}.json";
-			File.WriteAllText(filename, output);
+            byte[] bytes = UTF8Encoding.UTF8.GetBytes(output);
+            string base64 = Convert.ToBase64String(bytes);
 
-			Close();
+            base64Box.Text = base64;
 		}
 
 		private void CreateElementForMatch(ref Grid picksGrid, JObject game, int rowIndex)
