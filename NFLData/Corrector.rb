@@ -29,6 +29,12 @@ def getWeekScore(weekData)
             else
                 p[:result] = result;
             end
+
+            if (p[:scores] != nil)
+                p[:scores].push(result);
+            else
+                p[:scores] = Array.new(1, result);
+            end
         end
     end
 
@@ -37,9 +43,11 @@ end
 
 def printWeekScores(scoresData)
     scoresData["games"].each_with_index do |game, i|
-        gameStr = "#{game["strAwayTeam"]} (#{game["intAwayScore"]}) vs. (#{game["intHomeScore"]}) #{game["strHomeTeam"]} | ";
+        gameStr = "#{game["strAwayTeam"].ljust(20)} (#{game["intAwayScore"].to_s.rjust(2)})";
+        gameStr.concat(" vs. ");
+        gameStr.concat("(#{game["intHomeScore"].to_s.rjust(2)}) #{game["strHomeTeam"].rjust(20)} | ");
         scoresData["predictions"].each do |p|
-            gameStr.concat("#{p["pooler"]}: #{p["picks"][i]} -- ");
+            gameStr.concat("#{p["pooler"]}: +#{p[:scores][i]} -- ");
         end
 
         puts gameStr;
