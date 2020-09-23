@@ -91,8 +91,8 @@
     {
       "strHomeTeam": "Arizona Cardinals",
       "strAwayTeam": "Washington",
-      "intHomeScore": "27",
-      "intAwayScore": "9",
+      "intHomeScore": "30",
+      "intAwayScore": "15",
       "dateEvent": "2020-09-20",
       "strTimeLocal": "16:05:00"
     },
@@ -100,15 +100,15 @@
       "strHomeTeam": "Houston Texans",
       "strAwayTeam": "Baltimore Ravens",
       "intHomeScore": "16",
-      "intAwayScore": "30",
+      "intAwayScore": "33",
       "dateEvent": "2020-09-20",
       "strTimeLocal": "16:25:00"
     },
     {
       "strHomeTeam": "Los Angeles Chargers",
       "strAwayTeam": "Kansas City Chiefs",
-      "intHomeScore": "17",
-      "intAwayScore": "17",
+      "intHomeScore": "20",
+      "intAwayScore": "23",
       "dateEvent": "2020-09-20",
       "strTimeLocal": "16:25:00"
     },
@@ -123,8 +123,8 @@
     {
       "strHomeTeam": "Las Vegas Raiders",
       "strAwayTeam": "New Orleans Saints",
-      "intHomeScore": null,
-      "intAwayScore": null,
+      "intHomeScore": "34",
+      "intAwayScore": "24",
       "dateEvent": "2020-09-22",
       "strTimeLocal": "20:15:00"
     }
