@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -67,11 +68,27 @@ namespace WeekPicker
 			public string[] picks;
 		}
 
+        private class PayloadData
+        {
+            public string Content;
+
+            public Dictionary<string, string> GetPostContent()
+            {
+                return new Dictionary<string, string>()
+                {
+                    { "content", Content }
+                };
+            }
+        }
+
 		private int season;
 		private int week;
 
 		private JObject weekData;
 		private List<MatchPick> picks;
+
+        private static readonly HttpClient httpClient = new HttpClient();
+        private const string webHookURL = "https://discordapp.com/api/webhooks/758540971267850240/kMDayrZkPq4aEqFIIMnXCzj_uryHSewRT-RrNPZL-q9ESqwJI6XR7hIVN1afBs0KzL7A";
 
 		public PicksWindow(JObject rawWeekData, int s, int w)
 		{
@@ -116,6 +133,15 @@ namespace WeekPicker
             string base64 = Convert.ToBase64String(bytes);
 
             base64Box.Text = base64;
+
+            // Test Discord webhook
+            PayloadData data = new PayloadData
+            {
+                Content = $"Choix pour {PoolerName.Text} : `{base64}`"
+            };
+            httpClient.PostAsync(webHookURL, new FormUrlEncodedContent(data.GetPostContent()));
+
+            Close();
 		}
 
 		private void CreateElementForMatch(ref Grid picksGrid, JObject game, int rowIndex)
