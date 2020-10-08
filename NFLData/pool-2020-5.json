@@ -1,0 +1,206 @@
+{
+  "games": [
+    {
+      "strHomeTeam": "Chicago Bears",
+      "strAwayTeam": "Tampa Bay Buccaneers",
+      "intHomeScore": null,
+      "intAwayScore": null,
+      "dateEvent": "2020-10-08",
+      "strTimeLocal": "19:20:00"
+    },
+    {
+      "strHomeTeam": "Atlanta Falcons",
+      "strAwayTeam": "Carolina Panthers",
+      "intHomeScore": null,
+      "intAwayScore": null,
+      "dateEvent": "2020-10-11",
+      "strTimeLocal": "12:00:00"
+    },
+    {
+      "strHomeTeam": "Baltimore Ravens",
+      "strAwayTeam": "Cincinnati Bengals",
+      "intHomeScore": null,
+      "intAwayScore": null,
+      "dateEvent": "2020-10-11",
+      "strTimeLocal": "12:00:00"
+    },
+    {
+      "strHomeTeam": "Houston Texans",
+      "strAwayTeam": "Jacksonville Jaguars",
+      "intHomeScore": null,
+      "intAwayScore": null,
+      "dateEvent": "2020-10-11",
+      "strTimeLocal": "12:00:00"
+    },
+    {
+      "strHomeTeam": "Kansas City Chiefs",
+      "strAwayTeam": "Las Vegas Raiders",
+      "intHomeScore": null,
+      "intAwayScore": null,
+      "dateEvent": "2020-10-11",
+      "strTimeLocal": "12:00:00"
+    },
+    {
+      "strHomeTeam": "New England Patriots",
+      "strAwayTeam": "Denver Broncos",
+      "intHomeScore": null,
+      "intAwayScore": null,
+      "dateEvent": "2020-10-11",
+      "strTimeLocal": "12:00:00"
+    },
+    {
+      "strHomeTeam": "New York Jets",
+      "strAwayTeam": "Arizona Cardinals",
+      "intHomeScore": null,
+      "intAwayScore": null,
+      "dateEvent": "2020-10-11",
+      "strTimeLocal": "12:00:00"
+    },
+    {
+      "strHomeTeam": "Pittsburgh Steelers",
+      "strAwayTeam": "Philadelphia Eagles",
+      "intHomeScore": null,
+      "intAwayScore": null,
+      "dateEvent": "2020-10-11",
+      "strTimeLocal": "12:00:00"
+    },
+    {
+      "strHomeTeam": "Tennessee Titans",
+      "strAwayTeam": "Buffalo Bills",
+      "intHomeScore": null,
+      "intAwayScore": null,
+      "dateEvent": "2020-10-11",
+      "strTimeLocal": "12:00:00"
+    },
+    {
+      "strHomeTeam": "Washington",
+      "strAwayTeam": "Los Angeles Rams",
+      "intHomeScore": null,
+      "intAwayScore": null,
+      "dateEvent": "2020-10-11",
+      "strTimeLocal": "12:00:00"
+    },
+    {
+      "strHomeTeam": "San Francisco 49ers",
+      "strAwayTeam": "Miami Dolphins",
+      "intHomeScore": null,
+      "intAwayScore": null,
+      "dateEvent": "2020-10-11",
+      "strTimeLocal": "15:05:00"
+    },
+    {
+      "strHomeTeam": "Cleveland Browns",
+      "strAwayTeam": "Indianapolis Colts",
+      "intHomeScore": null,
+      "intAwayScore": null,
+      "dateEvent": "2020-10-11",
+      "strTimeLocal": "15:25:00"
+    },
+    {
+      "strHomeTeam": "Dallas Cowboys",
+      "strAwayTeam": "New York Giants",
+      "intHomeScore": null,
+      "intAwayScore": null,
+      "dateEvent": "2020-10-11",
+      "strTimeLocal": "15:25:00"
+    },
+    {
+      "strHomeTeam": "Seattle Seahawks",
+      "strAwayTeam": "Minnesota Vikings",
+      "intHomeScore": null,
+      "intAwayScore": null,
+      "dateEvent": "2020-10-11",
+      "strTimeLocal": "19:20:00"
+    },
+    {
+      "strHomeTeam": "New Orleans Saints",
+      "strAwayTeam": "Los Angeles Chargers",
+      "intHomeScore": null,
+      "intAwayScore": null,
+      "dateEvent": "2020-10-12",
+      "strTimeLocal": "19:15:00"
+    }
+  ],
+  "predictions": [
+    {
+      "pooler": "josee",
+      "picks": [
+        "H",
+        "V",
+        "H",
+        "V",
+        "H",
+        "H",
+        "V",
+        "H",
+        "V",
+        "V",
+        "H",
+        "H",
+        "H",
+        "H",
+        "H"
+      ]
+    },
+    {
+      "pooler": "denis",
+      "picks": [
+        "V",
+        "H",
+        "H",
+        "H",
+        "H",
+        "H",
+        "V",
+        "H",
+        "V",
+        "V",
+        "H",
+        "V",
+        "H",
+        "H",
+        "H"
+      ]
+    },
+    {
+      "pooler": "Amelia",
+      "picks": [
+        "H",
+        "H",
+        "H",
+        "V",
+        "H",
+        "H",
+        "V",
+        "H",
+        "H",
+        "V",
+        "H",
+        "V",
+        "H",
+        "V",
+        "H"
+      ]
+    },
+    {
+      "pooler": "Alex",
+      "picks": [
+        "V",
+        "H",
+        "H",
+        "H",
+        "H",
+        "H",
+        "V",
+        "H",
+        "V",
+        "V",
+        "H",
+        "V",
+        "H",
+        "H",
+        "H"
+      ]
+    }
+  ]
+}
