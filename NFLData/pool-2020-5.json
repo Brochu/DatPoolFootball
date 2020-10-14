@@ -99,8 +99,8 @@
     {
       "strHomeTeam": "Tennessee Titans",
       "strAwayTeam": "Buffalo Bills",
-      "intHomeScore": null,
-      "intAwayScore": null,
+      "intHomeScore": "42",
+      "intAwayScore": "16",
       "dateEvent": "2020-10-13",
       "strTimeLocal": "19:00:00"
     },
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "pooler": "denis",
+      "pooler": "Denis",
       "picks": [
         "V",
         "H",

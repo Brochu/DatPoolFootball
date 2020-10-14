@@ -71,7 +71,9 @@ def printTotalScores(scoresArray)
             total = printWeekScores(s);
             total.each do |t|
                 entry = grandTotal.find { |g| g[:pooler] == t[:pooler] };
-                entry[:result] += t[:result];
+                if (entry != nil) 
+                  entry[:result] += t[:result];
+                end
             end
         end
     end
