@@ -1,0 +1,194 @@
+{
+  "games": [
+    {
+      "strHomeTeam": "New England Patriots",
+      "strAwayTeam": "Denver Broncos",
+      "intHomeScore": "12",
+      "intAwayScore": "18",
+      "dateEvent": "2020-10-18",
+      "strTimeLocal": "13:00:00"
+    },
+    {
+      "strHomeTeam": "Carolina Panthers",
+      "strAwayTeam": "Chicago Bears",
+      "intHomeScore": "16",
+      "intAwayScore": "23",
+      "dateEvent": "2020-10-18",
+      "strTimeLocal": "13:00:00"
+    },
+    {
+      "strHomeTeam": "Indianapolis Colts",
+      "strAwayTeam": "Cincinnati Bengals",
+      "intHomeScore": "31",
+      "intAwayScore": "27",
+      "dateEvent": "2020-10-18",
+      "strTimeLocal": "13:00:00"
+    },
+    {
+      "strHomeTeam": "Jacksonville Jaguars",
+      "strAwayTeam": "Detroit Lions",
+      "intHomeScore": "16",
+      "intAwayScore": "34",
+      "dateEvent": "2020-10-18",
+      "strTimeLocal": "13:00:00"
+    },
+    {
+      "strHomeTeam": "Minnesota Vikings",
+      "strAwayTeam": "Atlanta Falcons",
+      "intHomeScore": "23",
+      "intAwayScore": "40",
+      "dateEvent": "2020-10-18",
+      "strTimeLocal": "13:00:00"
+    },
+    {
+      "strHomeTeam": "New York Giants",
+      "strAwayTeam": "Washington",
+      "intHomeScore": "20",
+      "intAwayScore": "19",
+      "dateEvent": "2020-10-18",
+      "strTimeLocal": "13:00:00"
+    },
+    {
+      "strHomeTeam": "Philadelphia Eagles",
+      "strAwayTeam": "Baltimore Ravens",
+      "intHomeScore": "28",
+      "intAwayScore": "30",
+      "dateEvent": "2020-10-18",
+      "strTimeLocal": "13:00:00"
+    },
+    {
+      "strHomeTeam": "Pittsburgh Steelers",
+      "strAwayTeam": "Cleveland Browns",
+      "intHomeScore": "38",
+      "intAwayScore": "7",
+      "dateEvent": "2020-10-18",
+      "strTimeLocal": "13:00:00"
+    },
+    {
+      "strHomeTeam": "Tennessee Titans",
+      "strAwayTeam": "Houston Texans",
+      "intHomeScore": "42",
+      "intAwayScore": "36",
+      "dateEvent": "2020-10-18",
+      "strTimeLocal": "13:00:00"
+    },
+    {
+      "strHomeTeam": "Tampa Bay Buccaneers",
+      "strAwayTeam": "Green Bay Packers",
+      "intHomeScore": "38",
+      "intAwayScore": "10",
+      "dateEvent": "2020-10-18",
+      "strTimeLocal": "16:25:00"
+    },
+    {
+      "strHomeTeam": "New York Jets",
+      "strAwayTeam": "Miami Dolphins",
+      "intHomeScore": "0",
+      "intAwayScore": "24",
+      "dateEvent": "2020-10-18",
+      "strTimeLocal": "16:05:00"
+    },
+    {
+      "strHomeTeam": "Buffalo Bills",
+      "strAwayTeam": "Kansas City Chiefs",
+      "intHomeScore": "17",
+      "intAwayScore": "26",
+      "dateEvent": "2020-10-19",
+      "strTimeLocal": "17:00:00"
+    },
+    {
+      "strHomeTeam": "San Francisco 49ers",
+      "strAwayTeam": "Los Angeles Rams",
+      "intHomeScore": "24",
+      "intAwayScore": "16",
+      "dateEvent": "2020-10-19",
+      "strTimeLocal": "20:20:00"
+    },
+    {
+      "strHomeTeam": "Dallas Cowboys",
+      "strAwayTeam": "Arizona Cardinals",
+      "intHomeScore": "10",
+      "intAwayScore": "38",
+      "dateEvent": "2020-10-20",
+      "strTimeLocal": "20:15:00"
+    }
+  ],
+  "predictions": [
+    {
+      "pooler": "Alex",
+      "picks": [
+        "V",
+        "H",
+        "H",
+        "V",
+        "V",
+        "V",
+        "V",
+        "V",
+        "V",
+        "V",
+        "V",
+        "V",
+        "V",
+        "V"
+      ]
+    },
+    {
+      "pooler": "josee",
+      "picks": [
+        "H",
+        "V",
+        "H",
+        "V",
+        "H",
+        "V",
+        "V",
+        "H",
+        "H",
+        "V",
+        "V",
+        "H",
+        "H",
+        "V"
+      ]
+    },
+    {
+      "pooler": "Denis",
+      "picks": [
+        "H",
+        "V",
+        "V",
+        "V",
+        "H",
+        "H",
+        "V",
+        "H",
+        "H",
+        "V",
+        "V",
+        "V",
+        "V",
+        "H"
+      ]
+    },
+    {
+      "pooler": "Amelia",
+      "picks": [
+        "V",
+        "H",
+        "H",
+        "H",
+        "H",
+        "V",
+        "V",
+        "H",
+        "V",
+        "V",
+        "V",
+        "V",
+        "H",
+        "V"
+      ]
+    }
+  ]
+}
